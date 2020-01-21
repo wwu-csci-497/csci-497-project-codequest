@@ -9,3 +9,18 @@ Item addons, Item Attribute slots,
 7. Skills/Abilities
 8. Different Levels
 9. make code blocks for item attributes and link them to hotkeys
+
+
+
+Unity <--> Blockly Flow:
+    1. Object on Unity contains blockly configuration and solution ID
+    2. Passes to blockly web-view which configures blockly code
+    3. Blockly runs and tests soltuions, returns json object to Unity
+    4. Unity reads and implements json object
+
+Art: 
+    Bit size: 16 or 32
+    Create players and objects
+    
+
+
