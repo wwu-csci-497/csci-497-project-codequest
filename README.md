@@ -5,10 +5,11 @@ Mission Statement: A game that teaches basic coding concepts and logic for kids.
 Teach coding concepts, not code. Solve blockly puzzles to progress through the game.
 
 TODO:
-1. Research how to implement Blocky with Unity
-2. What concepts do we want to teach? (Specific list)
-3. Find 16-bit pixel art and artwork for 2D side scrolling
-4. Find a character to base off of
+1. Blockly - Webview Characters
+2. Tutorial Puzzles
+3. Find 32-bit pixel art and artwork for 2D side scrolling 
+4. MAKE CHARACTERS
+4. Setup tutorial scene
 
 --Game Features--
 1. Techology: Unity + Blockly
