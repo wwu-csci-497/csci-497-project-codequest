@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CodeQuest Blockly View</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <script src="./blockly/blockly_compressed.js" type="text/javascript"></script>
+    <script src="./blockly/blocks_compressed.js" type="text/javascript"></script>
+    <script src="./blockly/msg/js/en.js" type="text/javascript"></script>
+    <script src="./blockly/javascript_compressed.js" type="text/javascript"></script>
+    <script src="./js/codequest_blocks.js" type="text/javascript"></script>
+    <script src="./JS-Interpreter-master/acorn_interpreter.js"></script>
+    <style>
+      html, body {
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        background-color: white;
+        font-family: Lato;
+        letter-spacing: 1px;
+        box-sizing: border-box;
+        padding: 0;
+        user-select: none;
+        border: 2.5px solid black;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+      }
+      button {
+        width: 200px;
+        height: 50px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 20px;
+        letter-spacing: 1px;
+        box-shadow: 0 0 3px 0 black;
+        border: 2px solid black;
+        color: white;
+      }
+      button:hover {
+        opacity: .75;
+      }
+      .full-dims {
+        width: 100%;
+        height: 100%;
+      }
+      .flex-row-center {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      .flex-col-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #container {
+        box-shadow: 0 0 10px 0 black;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      #blockly_container {
+        background-color: black;
+      }
+      #view_container {
+        width: 60%;
+        border-left: 2.5px solid black;
+        box-sizing: border-box;
+        box-shadow: 0 0 10px 0 black;
+        background-color: #e3e3e3
+      }
+      #blockly_div {
+        overflow: auto;
+      }
+      #instructions {
+
+      }
+      #generated_code {
+        border-top: 1px solid black;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      #toggle_generated_code {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+        border-top: 1px solid black;
+        background-color: #437194;
+        color: white;
+        box-sizing: border-box;
+      }
+      #toggle_generated_code:hover {
+        opacity: .75;
+      }
+      #navigation {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        box-sizing: border-box;
+        border-top: 2px solid black;
+        width: 100%;
+        justify-content: space-around;
+      }
+      #button_cancel {
+        background-color: #e3e3e3;
+        color: black;
+      }
+      #button_submit {
+        background-color: #4A9805;
+      }
+      .blocklyToolboxDiv {
+        background-color: #212121;
+        color: white;
+        width: 100px;
+      }
+      .blocklyTreeRow {
+        padding: 5px 10px;
+        text-align: right;
+        cursor: pointer;
+      }
+      .blocklyTreeRow:hover {
+        color: black;
+      }
+      .blocklyFlyout {
+        background: white;
+        box-shadow: 0 0 10px 0 black;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        color: white;
+        width: auto;
+      }
+
+
+    </style>
+  </head>
+  <body class="flex-col-center">
+    <div id="container" class="full-dims flex-row-center">
+      <div id="blockly_container" class="full-dims">
+        <div id="blockly_div" class="full-dims" style="position: relative;"></div>
+        <xml id="toolbox" style="display: block;"></xml>
+      </div>
+      <div id="view_container" class="full-dims flex-col-center">
+        <div id="instructions" class="full-dims flex-col-center">
+          <iframe src='./instructions/0000.html'></iframe>
+        </div>
+        <div id="generated_code" style="display: none;"></div>
+        <div id="toggle_generated_code" class="flex-row-center" onclick="toggleCode()">Click to show code</div>
+      </div>
+    </div>
+    <div id="navigation" class="flex-row-center">
+      <button id="button_cancel">Cancel</button>
+      <button id="button_submit" onclick="runCode()">Submit</button>
+    </div>
+  </body>
+  <script>
+
+    var BLOCKS = ['controls_if', 'controls_repeat_ext', 'string_length', 'colour_picker'];
+    var workspace = null;
+    var CODE = null;
+    var CODE_SHOW = false;
+
+    function runCode() {
+      var myInterpreter = new Interpreter(CODE);
+      myInterpreter.run();
+      alert(myInterpreter.value);
+    }
+    function toggleCode() {
+      CODE_SHOW = !CODE_SHOW;
+      if (CODE_SHOW)
+        generated_code.style.display = 'flex';
+      else
+        generated_code.style.display = 'none';
+    }
+
+    function generateCode(e) {
+      if (e.type == Blockly.Events.MOVE ||
+          e.type == Blockly.Events.CHANGE ||
+          e.type == Blockly.Events.DELETE) {
+        CODE = Blockly.JavaScript.workspaceToCode(workspace);
+        generated_code.innerHTML = CODE.replace(/{/g, '{<br>');
+      }
+    }
+
+    onresize = function() {
+
+    }
+    window.addEventListener('resize', onresize);
+
+    CODE = 'jkfdjkfd;jkfa;ljksd;lkjf ;slakfjd;lsjkd f;lsakjdf;laskfjwioef owieu fwei ufwoeif awoei;f wa;eoif wa;eifh ;woeifh ;woefh;woei fh;woaeifh;woei hf;owejif;oweij f;owei fj;owiefh;woeu fh;wue fhwieu fhwiue fhiwu hefiwjhef iwe fhowefh; owaiefj wkejf wiefj woefihoawe;fj ;we fjw;oeifj ;woiefh;woeihf; woiefj;woief j;woeifj ;woei fh;weofh w;eofh;waefhw;efhwejfwh iefuhwoiheo ihwoie fhwoie fpwe jkfdjkfd;jkfa;ljksd;lkjf ;slakfjd;lsjkd f;lsakjdf;laskfjwioef owieu fwei ufwoeif awoei;f wa;eoif wa;eifh ;woeifh ;woefh;woei fh;woaeifh;woei hf;owejif;oweij f;owei fj;owiefh;woeu fh;wue fhwieu fhwiue fhiwu hefiwjhef iwe fhowefh; owaiefj wkejf wiefj woefihoawe;fj ;we fjw;oeifj ;woiefh;woeihf; woiefj;woief j;woeifj ;woei fh;weofh w;eofh;waefhw;efhwejfwh iefuhwoiheo ihwoie fhwoie fpwe';
+
+    window.onload = function() {
+      for (var i = 0; i < BLOCKS.length; i++)
+        generateBlock(BLOCKS[i]);
+      workspace = Blockly.inject(blockly_div, {toolbox: document.getElementById('toolbox')});
+      workspace.addChangeListener(generateCode);
+    }
+  </script>
+</html>
