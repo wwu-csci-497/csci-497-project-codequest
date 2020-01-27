@@ -23,9 +23,22 @@ function generateBlock(id) {
 
     var values = block_entry['values'].split(';');
     for (var i = 0; i < values.length; i++) {
+      var value_cascade = value[i].split('>');
       var value = document.createElement('value');
-      value.setAttribute('name', values[i]);
+      value.setAttribute('name', value_cascade[0]);
       block.appendChild(value);
+      if (value_cascade[1] != '') {
+        var shadow = document.createElement('shadow');
+        shadow.setAttribute('type', value_cascade[1]);
+        value.appendChild(shadow);
+        if (value_cascade[2] != '') {
+          var field = document.createElement('field');
+          field.setAttribute('name', value_cascade[2]);
+          if (value_cascade[3] != '')
+            field.innerHTML = value_cascade[3];
+          shadow.appendChild(field);
+        }
+      }
     }
 
     document.getElementById(block_entry['id'].split('_')[0]).appendChild(block);
