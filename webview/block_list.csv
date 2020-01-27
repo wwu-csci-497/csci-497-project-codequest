@@ -1,0 +1,52 @@
+id	default value	mutations	description
+controls_if			if statement
+controls_repeat_ext	TIMES		while loop iteration x amount of times
+controls_whileUntil			while loop until condition is false
+controls_for	FROM;TO;BY		for loop iteration by count
+controls_forEach			for loop iteration over array or list
+controls_flow_statements			break out or continue with next iteration of loop
+logic_compare			logical compare (equal; greater than; etc...)
+logic_operation			logical operator (and/or)
+logic_negate			logical negation (not)
+logic_boolean			boolean (true/false)
+logic_null			null value
+logic_ternary			(test; if true do this; if false do this)
+math_number			a number
+math_arithmetic	X;Y;		arithmetic on two numbers
+math_single	NUM		(square root; absolute value; logs)
+math_trig	NUM		trigonmetric functions
+math_constant			constants (pi; e; phi; infinity; etc...)
+math_number_property	NUMBER_TO_CHECK		check if number is (even; odd; prime; whole; positive; negative; or divisible by)
+math_round	NUM		rounds a number
+math_on_list			does (sum; min; max; average; median; modes; std; picks random) from a list
+math_modulo	DIVIDEND;DIVISOR		gets the remainder from modulo arithmetic
+math_constrain	VALUE;LOW;HIGH		constrains a value within two other values
+math_random_int	FROM;TO		creates a random integer from two bounds
+math_random_float			creates a random float between 0 and 1
+text			a string
+text_join			joins two strings together
+text_append	TEXT		appends text onto another variable or item with ability to rename
+text_length	VALUE		reutnrs the length of the string
+text_isEmpty	VALUE		checks if the string is empty
+text_indexOf	VALUE;FIND		find the (first/last) occurence of the text "substr" in a string
+text_charAt	VALUE		fint the index location of the character in the string
+text_getSubstring	STRING		get a substring from the string
+text_changeCase	TEXT		convert a string to (UPPERCASE; lowercase; or Title Case)
+text_trim	TEXT		trims spaces from (front; end; or both) from a string
+text_print	TEXT		prints a string
+text_prompt_ext	TEXT		prompts the user for text or number with a string message attached
+lists_create_with		items="0"	creates an empty list
+lists_create_with			creates a list with values
+lists_repeat	NUM		creates a list with a value "x" amount of times
+lists_length			gets the length of a list
+lists_isEmpty			checks if the list is empty
+lists_indexOf	VALUE		gets the (first/last) occurence index of the item
+lists_getIndex	VALUE		gets the value at index "x"
+lists_setIndex	LIST		sets the value at index "x"
+lists_getSublist	LIST		gets the sublist from a list
+lists_split	DELIM		creates text from list based on delimeter or vice versa
+lists_sort			sorts by (numeric/alphabetic) (ascending/descending)
+colour_picker			standard color picker
+colour_random			chooses random color
+colour_rgb	RED;GREEN;BLUE		create an rgb instance
+colour_blend	COLOR1;COLOR2;RATIO;		blend two color pickers

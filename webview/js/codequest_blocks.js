@@ -1,56 +1,34 @@
-function generateBlock(name) {
-  console.log('generateBlock():', name);
-  if (name == 'controls_if' || name == 'controls_repeat_ext') {
-    // if (document.getElementById('cat_control') == undefined)
-    //   createCategory('Control');
+function generateBlock(id) {
+  console.log('generateBlock():', id);
+  var block_entry = null;
+  for (entry in BLOCK_LIST)
+    if (BLOCK_LIST[entry]['id'] == id)
+      block_entry = BLOCK_LIST[entry];
+  if (block_entry != null) {
+
+    var mutations = block_entry['mutations'].split(';');
     var block = document.createElement('block');
-    block.setAttribute('type', name);
-    console.log(block);
-    // document.getElementById('cat_control').appendChild(block);
-    document.getElementById('toolbox').appendChild(block);
-  }
-  else if (name == 'string_length') {
-    Blockly.Blocks[name] = {
-      init: function() {
-        this.jsonInit({
-          "message0": 'length of %1',
-          "args0": [
-            {
-              "type": "input_value",
-              "name": "VALUE",
-              "check": "String"
-            }
-          ],
-          "output": "Number",
-          "colour": 160,
-          "tooltip": "Returns number of letters in the provided text.",
-          "helpUrl": "http://www.w3schools.com/jsref/jsref_length_string.asp"
-        });
+    if (mutations[0] != '') {
+      console.log(mutations[0])
+      block.setAttribute('type', id.split('-')[0])
+      for (var i = 0; i < mutations.length; i++) {
+        var attribute = mutations[i].split('=');
+        var mutation = document.createElement('mutation');
+        mutation.setAttribute(attribute[0], attribute[1].replace(/\"/g, ''));
+        block.appendChild(mutation);
       }
-    };
+    }
+    else
+      block.setAttribute('type', id);
 
-    Blockly.JavaScript[name] = function(block) {
-      var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE',
-          Blockly.JavaScript.ORDER_FUNCTION_CALL) || '\'\'';
-      return [argument0 + '.length', Blockly.JavaScript.ORDER_MEMBER];
-    };
+    var values = block_entry['values'].split(';');
+    for (var i = 0; i < values.length; i++) {
+      var value = document.createElement('value');
+      value.setAttribute('name', values[i]);
+      block.appendChild(value);
+    }
 
-    // if (document.getElementById('cat_other') == undefined)
-    //   createCategory('Other');
-    var block = document.createElement('block');
-    block.setAttribute('type', name);
-    console.log(block);
-    // document.getElementById('cat_other').appendChild(block);
-    document.getElementById('toolbox').appendChild(block);
-  }
-  else {
-    // if (document.getElementById('cat_other') == undefined)
-    //   createCategory('Other');
-    var block = document.createElement('block');
-    block.setAttribute('type', name);
-    console.log(block);
-    // document.getElementById('cat_other').appendChild(block);
-    document.getElementById('toolbox').appendChild(block);
+    document.getElementById(block_entry['id'].split('_')[0]).appendChild(block);
   }
 }
 

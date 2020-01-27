@@ -10,12 +10,16 @@
         width: 100%;
         height: 100%;
         margin: 0 auto;
-        background-color: orange;
+        background-color: #212121;
+        color: white;
         font-family: Lato;
         letter-spacing: 1px;
         box-sizing: border-box;
         padding: 0;
         user-select: none;
+      }
+      h2 {
+        text-align: center;
       }
       button {
         width: 200px;
@@ -28,7 +32,7 @@
         font-size: 20px;
         letter-spacing: 1px;
         box-shadow: 0 0 3px 0 black;
-        border: 2px solid black;
+        border: 2px solid white;
         color: white;
       }
       button:hover {
@@ -44,24 +48,54 @@
         justify-content: center;
         align-items: center;
       }
+      .flex-row-spacearound {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+      }
       .flex-col-center {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
       }
+      .character-box {
+        border-radius: 10px;
+        overflow: hidden;
+        width: 150px;
+        height: 150px;
+        border: 2px solid white;
+      }
       #container {
         box-shadow: 0 0 10px 0 black;
         box-sizing: border-box;
+        padding: 15px;
         overflow: hidden;
       }
-
-
     </style>
   </head>
   <body class="flex-col-center">
     <div id="container" class="full-dims flex-col-center">
-
+      <h3 id="instructions">(*) Select your character by setting the variable "character" to the number you want.</h3>
+      <div class="full-dims flex-col-center">
+        <div class="full-dims flex-row-spacearound">
+          <label>
+          <div id="character_1" class="flex-row-center character-box">Character 1</div>
+          <h2>1</h2></label>
+          <label>
+          <div id="character_2" class="flex-row-center character-box">Character 2</div>
+          <h2>2</h2></label>
+        </div>
+        <div class="full-dims flex-row-spacearound">
+          <label>
+          <div id="character_3" class="flex-row-center character-box">Character 3</div>
+          <h2>3</h2></label>
+          <label>
+          <div id="character_4" class="flex-row-center character-box">Character 4</div>
+          <h2>4</h2></label>
+        </div>
+      </div>
     </div>
   </body>
   <script>

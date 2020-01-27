@@ -10,152 +10,31 @@
     <script src="./blockly/javascript_compressed.js" type="text/javascript"></script>
     <script src="./js/codequest_blocks.js" type="text/javascript"></script>
     <script src="./JS-Interpreter-master/acorn_interpreter.js"></script>
-    <style>
-      html, body {
-        -webkit-tap-highlight-color: transparent;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        background-color: white;
-        font-family: Lato;
-        letter-spacing: 1px;
-        box-sizing: border-box;
-        padding: 0;
-        user-select: none;
-        border: 2.5px solid black;
-      }
-      iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        outline: none;
-      }
-      button {
-        width: 200px;
-        height: 50px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 20px;
-        letter-spacing: 1px;
-        box-shadow: 0 0 3px 0 black;
-        border: 2px solid black;
-        color: white;
-      }
-      button:hover {
-        opacity: .75;
-      }
-      .full-dims {
-        width: 100%;
-        height: 100%;
-      }
-      .flex-row-center {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      }
-      .flex-col-center {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      #container {
-        box-shadow: 0 0 10px 0 black;
-        box-sizing: border-box;
-        overflow: hidden;
-      }
-      #blockly_container {
-        background-color: black;
-      }
-      #view_container {
-        width: 60%;
-        border-left: 2.5px solid black;
-        box-sizing: border-box;
-        box-shadow: 0 0 10px 0 black;
-        background-color: #e3e3e3
-      }
-      #blockly_div {
-        overflow: auto;
-      }
-      #instructions {
-
-      }
-      #generated_code {
-        border-top: 1px solid black;
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-      }
-      #toggle_generated_code {
-        width: 100%;
-        padding: 10px;
-        cursor: pointer;
-        border-top: 1px solid black;
-        background-color: #437194;
-        color: white;
-        box-sizing: border-box;
-      }
-      #toggle_generated_code:hover {
-        opacity: .75;
-      }
-      #navigation {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        box-sizing: border-box;
-        border-top: 2px solid black;
-        width: 100%;
-        justify-content: space-around;
-      }
-      #button_cancel {
-        background-color: #e3e3e3;
-        color: black;
-      }
-      #button_submit {
-        background-color: #4A9805;
-      }
-      .blocklyToolboxDiv {
-        background-color: #212121;
-        color: white;
-        width: 100px;
-      }
-      .blocklyTreeRow {
-        padding: 5px 10px;
-        text-align: right;
-        cursor: pointer;
-      }
-      .blocklyTreeRow:hover {
-        color: black;
-      }
-      .blocklyFlyout {
-        background: white;
-        box-shadow: 0 0 10px 0 black;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        color: white;
-        width: auto;
-      }
-
-
-    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/main.css">
   </head>
   <body class="flex-col-center">
     <div id="container" class="full-dims flex-row-center">
       <div id="blockly_container" class="full-dims">
         <div id="blockly_div" class="full-dims" style="position: relative;"></div>
-        <xml id="toolbox" style="display: block;"></xml>
+        <xml id="toolbox" style="display: block;">
+          <category id='controls' name="Controls" colour="120"></category>
+          <category id='logic'  name="Logic" colour="210"></category>
+          <category id='math'  name="Math" colour="230"></category>
+          <category id='text'  name="Text" colour="160"></category>
+          <category id='lists'  name="Lists" colour="260"></category>
+          <category id='colour'  name="Color" colour="20"></category>
+          <sep></sep>
+          <category id='variables'  name="Variables" colour="330" custom="VARIABLE"></category>
+          <category id='functions'  name="Functions" colour="290" custom="PROCEDURE"></category>
+        </xml>
       </div>
       <div id="view_container" class="full-dims flex-col-center">
         <div id="instructions" class="full-dims flex-col-center">
           <iframe src='./instructions/0000.html'></iframe>
         </div>
-        <div id="generated_code" style="display: none;"></div>
-        <div id="toggle_generated_code" class="flex-row-center" onclick="toggleCode()">Click to show code</div>
+        <div id="generated_code" style="display: none; white-space: pre;"></div>
+        <div id="toggle_generated_code" class="flex-row-center" onclick="toggleCode()"></div>
       </div>
     </div>
     <div id="navigation" class="flex-row-center">
@@ -165,16 +44,70 @@
   </body>
   <script>
 
-    var BLOCKS = ['controls_if', 'controls_repeat_ext', 'string_length', 'colour_picker'];
-    var workspace = null;
+    var BLOCKS = ['controls_if', 'controls_repeat_ext', 'string_length', 'colour_picker', 'logic_compare', 'logic_operation', 'logic_boolean', 'math_number', 'lists_create_with-0'];
+    var WORKSPACE = null;
     var CODE = null;
     var CODE_SHOW = false;
+    var CSV = 'id,values,mutations,description\n'+
+    'controls_if,,,if statement\n'+
+    'controls_repeat_ext,TIMES,,while loop iteration x amount of times\n'+
+    'controls_whileUntil,,,while loop until condition is false\n'+
+    'controls_for,FROM;TO;BY,,for loop iteration by count\n'+
+    'controls_forEach,,,for loop iteration over array or list\n'+
+    'controls_flow_statements,,,break out or continue with next iteration of loop\n'+
+    'logic_compare,,,logical compare (equal; greater than; etc...)\n'+
+    'logic_operation,,,logical operator (and/or)\n'+
+    'logic_negate,,,logical negation (not)\n'+
+    'logic_boolean,,,boolean (true/false)\n'+
+    'logic_null,,,null value\n'+
+    'logic_ternary,,,(test; if true do this; if false do this)\n'+
+    'math_number,,,a number\n'+
+    'math_arithmetic,X;Y;,,arithmetic on two numbers\n'+
+    'math_single,NUM,,(square root; absolute value; logs)\n'+
+    'math_trig,NUM,,trigonmetric functions\n'+
+    'math_constant,,,constants (pi; e; phi; infinity; etc...)\n'+
+    'math_number_property,NUMBER_TO_CHECK,,check if number is (even; odd; prime; whole; positive; negative; or divisible by)\n'+
+    'math_round,NUM,,rounds a number\n'+
+    'math_on_list,,,does (sum; min; max; average; median; modes; std; picks random) from a list\n'+
+    'math_modulo,DIVIDEND;DIVISOR,,gets the remainder from modulo arithmetic\n'+
+    'math_constrain,VALUE;LOW;HIGH,,constrains a value within two other values\n'+
+    'math_random_int,FROM;TO,,creates a random integer from two bounds\n'+
+    'math_random_float,,,creates a random float between 0 and 1\n'+
+    'text,,,a string\n'+
+    'text_join,,,joins two strings together\n'+
+    'text_append,TEXT,,appends text onto another variable or item with ability to rename\n'+
+    'text_length,VALUE,,reutnrs the length of the string\n'+
+    'text_isEmpty,VALUE,,checks if the string is empty\n'+
+    'text_indexOf,VALUE;FIND,,find the (first/last) occurence of the text "substr" in a string\n'+
+    'text_charAt,VALUE,,fint the index location of the character in the string\n'+
+    'text_getSubstring,STRING,,get a substring from the string\n'+
+    'text_changeCase,TEXT,,convert a string to (UPPERCASE; lowercase; or Title Case)\n'+
+    'text_trim,TEXT,,trims spaces from (front; end; or both) from a string\n'+
+    'text_print,TEXT,,prints a string\n'+
+    'text_prompt_ext,TEXT,,prompts the user for text or number with a string message attached\n'+
+    'lists_create_with-0,,items="0",creates an empty list\n'+
+    'lists_create_with,,,creates a list with values\n'+
+    'lists_repeat,NUM,,creates a list with a value "x" amount of times\n'+
+    'lists_length,,,gets the length of a list\n'+
+    'lists_isEmpty,,,checks if the list is empty\n'+
+    'lists_indexOf,VALUE,,gets the (first/last) occurence index of the item\n'+
+    'lists_getIndex,VALUE,,gets the value at index "x"\n'+
+    'lists_setIndex,LIST,,sets the value at index "x"\n'+
+    'lists_getSublist,LIST,,gets the sublist from a list\n'+
+    'lists_split,DELIM,,creates text from list based on delimeter or vice versa\n'+
+    'lists_sort,,,sorts by (numeric/alphabetic) (ascending/descending)\n'+
+    'colour_picker,,,standard color picker\n'+
+    'colour_random,,,chooses random color\n'+
+    'colour_rgb,RED;GREEN;BLUE,,create an rgb instance\n'+
+    'colour_blend,COLOR1;COLOR2;RATIO;,,blend two color pickers';
+    var BLOCK_LIST = csvJSON(CSV);
 
     function runCode() {
       var myInterpreter = new Interpreter(CODE);
       myInterpreter.run();
       alert(myInterpreter.value);
     }
+
     function toggleCode() {
       CODE_SHOW = !CODE_SHOW;
       if (CODE_SHOW)
@@ -187,9 +120,12 @@
       if (e.type == Blockly.Events.MOVE ||
           e.type == Blockly.Events.CHANGE ||
           e.type == Blockly.Events.DELETE) {
-        CODE = Blockly.JavaScript.workspaceToCode(workspace);
-        generated_code.innerHTML = CODE.replace(/{/g, '{<br>');
+        CODE = Blockly.JavaScript.workspaceToCode(WORKSPACE);
+        HTML_CODE = CODE;
+        HTML_CODE = HTML_CODE.replace(/\n/g, '<br>');
+        generated_code.innerHTML = HTML_CODE;
       }
+      console.log('CODE', CODE);
     }
 
     onresize = function() {
@@ -197,13 +133,40 @@
     }
     window.addEventListener('resize', onresize);
 
-    CODE = 'jkfdjkfd;jkfa;ljksd;lkjf ;slakfjd;lsjkd f;lsakjdf;laskfjwioef owieu fwei ufwoeif awoei;f wa;eoif wa;eifh ;woeifh ;woefh;woei fh;woaeifh;woei hf;owejif;oweij f;owei fj;owiefh;woeu fh;wue fhwieu fhwiue fhiwu hefiwjhef iwe fhowefh; owaiefj wkejf wiefj woefihoawe;fj ;we fjw;oeifj ;woiefh;woeihf; woiefj;woief j;woeifj ;woei fh;weofh w;eofh;waefhw;efhwejfwh iefuhwoiheo ihwoie fhwoie fpwe jkfdjkfd;jkfa;ljksd;lkjf ;slakfjd;lsjkd f;lsakjdf;laskfjwioef owieu fwei ufwoeif awoei;f wa;eoif wa;eifh ;woeifh ;woefh;woei fh;woaeifh;woei hf;owejif;oweij f;owei fj;owiefh;woeu fh;wue fhwieu fhwiue fhiwu hefiwjhef iwe fhowefh; owaiefj wkejf wiefj woefihoawe;fj ;we fjw;oeifj ;woiefh;woeihf; woiefj;woief j;woeifj ;woei fh;weofh w;eofh;waefhw;efhwejfwh iefuhwoiheo ihwoie fhwoie fpwe';
+    CODE = '';
 
     window.onload = function() {
+      // $.ajax({
+      //     method: 'GET',
+      //     url: "file://localhost/block_list.csv",
+      //     crossDomain: true,
+      //     headers: {"Access-Control-Allow-Origin": "*"},
+      //     dataType: "csv",
+      //     success: function(data) {
+      //       console.log(data);
+      //       processData(data);
+      //     }
+      //  });
+
       for (var i = 0; i < BLOCKS.length; i++)
         generateBlock(BLOCKS[i]);
-      workspace = Blockly.inject(blockly_div, {toolbox: document.getElementById('toolbox')});
-      workspace.addChangeListener(generateCode);
+      WORKSPACE = Blockly.inject(blockly_div, {toolbox: document.getElementById('toolbox')});
+      WORKSPACE.addChangeListener(generateCode);
     }
+
+  function csvJSON(csv){
+    var lines=csv.split("\n");
+    var result = [];
+    var headers=lines[0].split(",");
+    for (var i=1;i<lines.length;i++){
+        var obj = {};
+        var currentline=lines[i].split(",");
+        for(var j=0;j<headers.length;j++){
+            obj[headers[j]] = currentline[j];
+        }
+        result.push(obj);
+    }
+    return result; //JSON
+}
   </script>
 </html>
