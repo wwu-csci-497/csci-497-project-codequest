@@ -1,4 +1,4 @@
-# Codename-Kids-Next-Door
+# CodeQuest
 Web app videogame to help beginners learn basic coding fundamentals.
 
 Mission Statement: A game that teaches basic coding concepts and logic for kids.
