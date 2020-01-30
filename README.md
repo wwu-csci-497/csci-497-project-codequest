@@ -22,5 +22,12 @@ TODO:
 --Concepts Taught--
 1. Variables
 2. Booleans
-3. ondition Statements
+3. Condition Statements
 4. Loops
+
+
+--Art Assests-- 
+1. Temple
+2. Temple Door 
+3. Temple Props (Torches, Chest, Key)
+4. Indoor temple background
