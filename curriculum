@@ -1,0 +1,16 @@
+Tutorial: Variables
+ - Set character variable equal to the character number (Setting integer value)
+ - Set directions to keys (Setting string/char value)
+ - Set jump = true (Setting boolean value)
+ - Set teleport = true (End of level)
+
+Level 1: If Statements with Logic
+ - If gem == ruby, emerald, sapphire, diamond
+ - 
+ 
+
+Level 2: If Statements with arithmetic
+
+Level 3: While Loops
+
+Level 4: Combined
