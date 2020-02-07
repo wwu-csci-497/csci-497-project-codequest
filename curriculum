@@ -1,7 +1,6 @@
 Tutorial: Variables
  - Set character variable equal to the character number (Setting integer value)
- - Set directions to keys (Setting string/char value)
- - Set jump = true (Setting boolean value)
+ - Set jump = space_bar (Setting boolean value)
  - Set teleport = true (End of level)
 
 Level 1: If Statements with Logic
@@ -14,3 +13,9 @@ Level 2: If Statements with arithmetic
 Level 3: While Loops
 
 Level 4: Combined
+
+Flow of teaching:
+1. Start with a created variable and setting it to a value
+2. Start with a created variable and rename a variable
+3. Create a variable
+4. 
