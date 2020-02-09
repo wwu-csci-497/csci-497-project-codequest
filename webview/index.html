@@ -15,8 +15,8 @@
   </head>
   <body class="flex-col-center">
     <div id="container" class="full-dims flex-row-center">
-      <div id="blockly_container" class="full-dims">
-        <div id="blockly_div" class="full-dims" style="position: relative;"></div>
+      <div id="blocklyContainer" class="full-dims">
+        <div id="blocklyDiv" class="full-dims" style="position: relative;"></div>
         <xml id="toolbox" style="display: block;">
           <category id='controls' name="Controls" colour="120"></category>
           <category id='logic'  name="Logic" colour="210"></category>
@@ -29,88 +29,41 @@
           <category id='functions'  name="Functions" colour="290" custom="PROCEDURE"></category>
         </xml>
       </div>
-      <div id="view_container" class="full-dims flex-col-center">
+      <div id="viewContainer" class="full-dims flex-col-center">
         <div id="instructions" class="full-dims flex-col-center">
-          <iframe src='./instructions/0000.html'></iframe>
+          <iframe id="instructionsFrame" src=''></iframe>
         </div>
         <div id="generated_code" style="display: none; white-space: pre;"></div>
-        <div id="toggle_generated_code" class="flex-row-center" onclick="toggleCode()"></div>
+        <div id="toggleGeneratedCode" class="flex-row-center" onclick="toggleCode()"></div>
       </div>
     </div>
     <div id="navigation" class="flex-row-center">
-      <button id="button_cancel">Close</button>
-      <button id="button_submit" onclick="runCode()">Done!</button>
+      <button id="buttonCancel">Close</button>
+      <button id="buttonSubmit" onclick="runCode()">Done!</button>
     </div>
   </body>
   <script>
 
-    var BLOCKS = ['controls_if', 'controls_repeat_ext', 'string_length', 'colour_picker', 'logic_compare', 'logic_operation', 'logic_boolean', 'math_number', 'lists_create_with-0', 'math_constrain'];
-    var WORKSPACE = null;
-    var CODE = null;
-    var CODE_SHOW = false;
-    var CSV = 'id,values,mutations,description\n'+
-    'controls_if,,,if statement\n'+
-    'controls_repeat_ext,TIMES,,while loop iteration x amount of times\n'+
-    'controls_whileUntil,,,while loop until condition is false\n'+
-    'controls_for,FROM;TO;BY,,for loop iteration by count\n'+
-    'controls_forEach,,,for loop iteration over array or list\n'+
-    'controls_flow_statements,,,break out or continue with next iteration of loop\n'+
-    'logic_compare,,,logical compare (equal; greater than; etc...)\n'+
-    'logic_operation,,,logical operator (and/or)\n'+
-    'logic_negate,,,logical negation (not)\n'+
-    'logic_boolean,,,boolean (true/false)\n'+
-    'logic_null,,,null value\n'+
-    'logic_ternary,,,(test; if true do this; if false do this)\n'+
-    'math_number,,,a number\n'+
-    'math_arithmetic,X;Y;,,arithmetic on two numbers\n'+
-    'math_single,NUM,,(square root; absolute value; logs)\n'+
-    'math_trig,NUM,,trigonmetric functions\n'+
-    'math_constant,,,constants (pi; e; phi; infinity; etc...)\n'+
-    'math_number_property,NUMBER_TO_CHECK,,check if number is (even; odd; prime; whole; positive; negative; or divisible by)\n'+
-    'math_round,NUM,,rounds a number\n'+
-    'math_on_list,,,does (sum; min; max; average; median; modes; std; picks random) from a list\n'+
-    'math_modulo,DIVIDEND;DIVISOR,,gets the remainder from modulo arithmetic\n'+
-    'math_constrain,VALUE;LOW;HIGH,,constrains a value within two other values\n'+
-    'math_random_int,FROM;TO,,creates a random integer from two bounds\n'+
-    'math_random_float,,,creates a random float between 0 and 1\n'+
-    'text,,,a string\n'+
-    'text_join,,,joins two strings together\n'+
-    'text_append,TEXT,,appends text onto another variable or item with ability to rename\n'+
-    'text_length,VALUE,,reutnrs the length of the string\n'+
-    'text_isEmpty,VALUE,,checks if the string is empty\n'+
-    'text_indexOf,VALUE;FIND,,find the (first/last) occurence of the text "substr" in a string\n'+
-    'text_charAt,VALUE,,fint the index location of the character in the string\n'+
-    'text_getSubstring,STRING,,get a substring from the string\n'+
-    'text_changeCase,TEXT,,convert a string to (UPPERCASE; lowercase; or Title Case)\n'+
-    'text_trim,TEXT,,trims spaces from (front; end; or both) from a string\n'+
-    'text_print,TEXT,,prints a string\n'+
-    'text_prompt_ext,TEXT,,prompts the user for text or number with a string message attached\n'+
-    'lists_create_with-0,,items="0",creates an empty list\n'+
-    'lists_create_with,,,creates a list with values\n'+
-    'lists_repeat,NUM,,creates a list with a value "x" amount of times\n'+
-    'lists_length,,,gets the length of a list\n'+
-    'lists_isEmpty,,,checks if the list is empty\n'+
-    'lists_indexOf,VALUE,,gets the (first/last) occurence index of the item\n'+
-    'lists_getIndex,VALUE,,gets the value at index "x"\n'+
-    'lists_setIndex,LIST,,sets the value at index "x"\n'+
-    'lists_getSublist,LIST,,gets the sublist from a list\n'+
-    'lists_split,DELIM,,creates text from list based on delimeter or vice versa\n'+
-    'lists_sort,,,sorts by (numeric/alphabetic) (ascending/descending)\n'+
-    'colour_picker,,,standard color picker\n'+
-    'colour_random,,,chooses random color\n'+
-    'colour_rgb,RED;GREEN;BLUE,,create an rgb instance\n'+
-    'colour_blend,COLOR1;COLOR2;RATIO;,,blend two color pickers';
-    var BLOCK_LIST = csvJSON(CSV);
+    var blockList = null;
+    var workspace = null;
+    var code = null;
+    var codeShow = false;
+    var urlVars = getUrlVars();
+
+    function tokenize(code) {
+      var tokens = [];
+      console.log('hello');
+    }
 
     function runCode() {
-      var myInterpreter = new Interpreter(CODE);
+      var myInterpreter = new Interpreter(code);
       myInterpreter.run();
-      alert(myInterpreter.value);
+      tokens = tokenize(code);
     }
 
     function toggleCode() {
-      CODE_SHOW = !CODE_SHOW;
-      if (CODE_SHOW)
+      codeShow = !codeShow;
+      if (codeShow)
         generated_code.style.display = 'flex';
       else
         generated_code.style.display = 'none';
@@ -120,53 +73,130 @@
       if (e.type == Blockly.Events.MOVE ||
           e.type == Blockly.Events.CHANGE ||
           e.type == Blockly.Events.DELETE) {
-        CODE = Blockly.JavaScript.workspaceToCode(WORKSPACE);
-        HTML_CODE = CODE;
-        HTML_CODE = HTML_CODE.replace(/\n/g, '<br>');
-        generated_code.innerHTML = HTML_CODE;
+        code = Blockly.JavaScript.workspaceToCode(workspace);
+        HTML_code = code;
+        HTML_code = HTML_code.replace(/\n/g, '<br>');
+        generated_code.innerHTML = HTML_code;
       }
-      console.log('CODE', CODE);
+      console.log('code', code);
     }
 
-    onresize = function() {
-
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+      });
+      return vars;
     }
-    window.addEventListener('resize', onresize);
 
-    CODE = '';
+    async function getBlockList() {
+      console.log('getBlockList()', 'GET BlockList');
+      $.ajax({
+          method: 'GET',
+          url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRS-1hHM3kpV1Q4ClJtHzl6YVyTzbuF4TFNcKsEOuJG7CCjhd1nCEnAFhRsXOha63SscRS9z-UqAZaH/pub?gid=317397626&single=true&output=csv",
+          crossDomain: true,
+          success: function(data) {
+            blockList = csvJSON(data);
+            localStorage.setItem('blockList', JSON.stringify(blockList));
+          },
+          error: function(jqXHR, status, err) {
+            console.error(jqXHR, status, err);
+          },
+          complete: function (jqXHR, status) {
+            getProblemBlocks();
+          }
+        });
+    }
+
+    async function getProblemBlocks() {
+      console.log('getProblemBlocks()', 'GET ProblemBlocks');
+      $.ajax({
+        method: 'GET',
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCWHbvr7hOAmEvWdwX-Yairf3Yf2_oWmpFMwJQKyFaxsSTjlY2KnJvQc_Z0t_qVkpxWvd40OFwrFnt/pub?gid=0&single=true&output=csv",
+        crossDomain: true,
+        success: function(data) {
+          problemBlocks = csvJSON2(data);
+          localStorage.setItem('problemBlocks', JSON.stringify(problemBlocks));
+        },
+        error: function(jqXHR, status, err) {
+          console.error(jqXHR, status, err);
+        },
+        complete: function (jqXHR, status) {
+          if (urlVars['v'] != null)
+            localStorage.setItem('v', urlVars['v']);
+          generateBlocks(problemBlocks.find(item => {
+            return item.id == urlVars['id']
+          }));
+        }
+      });
+    }
 
     window.onload = function() {
-      // $.ajax({
-      //     method: 'GET',
-      //     url: "file://localhost/block_list.csv",
-      //     crossDomain: true,
-      //     headers: {"Access-Control-Allow-Origin": "*"},
-      //     dataType: "csv",
-      //     success: function(data) {
-      //       console.log(data);
-      //       processData(data);
-      //     }
-      //  });
+      if (urlVars['id'] == undefined) {
+        console.error('ID not included in the url');
+        return;
+      }
+      instructionsFrame.src = './instructions/' + urlVars['id'] + '.html';
 
-      for (var i = 0; i < BLOCKS.length; i++)
-        generateBlock(BLOCKS[i]);
-      WORKSPACE = Blockly.inject(blockly_div, {toolbox: document.getElementById('toolbox')});
-      WORKSPACE.addChangeListener(generateCode);
+      if (urlVars['v'] == undefined || localStorage.getItem('v') != urlVars['v'])
+        getBlockList();
+      else {
+        if (localStorage.getItem('blockList') == null)
+          getBlockList();
+        else {
+          blockList = JSON.parse(localStorage.getItem('blockList'));
+          if (localStorage.getItem('problemBlocks') == null)
+            getProblemBlocks();
+          else {
+            var problemBlocks = JSON.parse(localStorage.getItem('problemBlocks'));
+            generateBlocks(problemBlocks.find(item => {
+              return item.id == urlVars['id']
+            }));
+          }
+        }
+      }
     }
+    
+  function generateBlocks(problemBlock) {
+    console.log(problemBlock);
+    var blocks = problemBlock['blocks'];
+    for (var i = 0; i < blocks.length; i++)
+      generateBlock(blocks[i]);
+    workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
+    workspace.addChangeListener(generateCode);
+  }
 
   function csvJSON(csv){
-    var lines=csv.split("\n");
+    var lines = csv.split("\n");
     var result = [];
-    var headers=lines[0].split(",");
-    for (var i=1;i<lines.length;i++){
+    var headers = lines[0].split(",");
+    for (var i = 1; i < lines.length; i++) {
         var obj = {};
-        var currentline=lines[i].split(",");
-        for(var j=0;j<headers.length;j++){
-            obj[headers[j]] = currentline[j];
+        var currentline = lines[i].split(",");
+        for (var j = 0; j < headers.length; j++)
+          obj[headers[j]] = currentline[j];
+        result.push(obj);
+    }
+    return result;
+  }
+
+  function csvJSON2(csv){
+    var lines = csv.split("\n");
+    var result = [];
+    for (var i = 1; i < lines.length; i++){
+        var obj = {};
+        var currentline = lines[i].split(",");
+        obj['id'] = currentline[0];
+        obj['blocks'] = [];
+        for (var j = 1; j < currentline.length; j++) {
+          if (currentline[j] == '')
+            break;
+          obj['blocks'].push(currentline[j]);
         }
         result.push(obj);
     }
-    return result; //JSON
-}
+    return result;
+  }
+
   </script>
 </html>
