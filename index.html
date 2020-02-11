@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | CodeQuest</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="./webview/blockly/blockly_compressed.js" type="text/javascript"></script>
+    <script src="./webview/blockly/blocks_compressed.js" type="text/javascript"></script>
+    <script src="./webview/blockly/msg/js/en.js" type="text/javascript"></script>
+    <script src="./webview/blockly/javascript_compressed.js" type="text/javascript"></script>
+    <script src="./webview/js/codequest_blocks.js" type="text/javascript"></script>
+    <script src="./webview/JS-Interpreter-master/acorn_interpreter.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./webview/css/main.css">
+    <script>var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Downloads.json", {onProgress: UnityProgress});</script>
+  </head>
+  <body class='full-dims flex-row-center'>
+
+    <!-- WebGL Unity Game -->
+    <div id="webglContainer" class="webgl-content full-dims max-size" style="position:fixed; overflow:hidden; border-radius:100px;">
+      <div id="unityContainer" class="full-dims max-size"></div>
+    </div>
+
+    <!-- Blockly Main Container -->
+    <div id="blocklyContainer" class="full-dims flex-col-center max-size" style="z-index:-1; position:absolute; overflow:hidden; border-radius:5px; padding:4px; border:10px solid #7C4518;">
+      <div id="container" class="full-dims flex-row-center">
+        <div class="full-dims">
+
+          <!-- Blockly Toolbar and Workspace Area -->
+          <div id="blocklyDiv" class="full-dims" style="position: relative;"></div>
+          <xml id="toolbox" style="display: block;">
+            <category id='controls' name="Controls" colour="120"></category>
+            <category id='logic'  name="Logic" colour="210"></category>
+            <category id='math'  name="Math" colour="230"></category>
+            <category id='text'  name="Text" colour="160"></category>
+            <category id='lists'  name="Lists" colour="260"></category>
+            <category id='colour'  name="Color" colour="20"></category>
+            <sep></sep>
+            <category id='variables'  name="Variables" colour="330" custom="VARIABLE"></category>
+            <category id='functions'  name="Functions" colour="290" custom="PROCEDURE"></category>
+          </xml>
+        </div>
+
+        <!-- Container for the problem -->
+        <div id="viewContainer" class="full-dims flex-col-center">
+          <div id="instructions" class="full-dims flex-col-center">
+            <iframe id="instructionsFrame" src=''></iframe>
+          </div>
+          <div id="generated_code" style="display: none; white-space: pre;"></div>
+          <div id="toggleGeneratedCode" class="flex-row-center" onclick="toggleCode()"></div>
+        </div>
+      </div>
+
+      <!-- Cancel and Submit Buttons -->
+      <div id="navigation" class="flex-row-center">
+        <button id="buttonCancel" onclick="showUnity()">Close</button>
+        <button id="buttonSubmit" onclick="showUnity()">Done!</button>
+      </div>
+    </div>
+  </body>
+  <script>
+
+    var blockList = null;
+    var workspace = null;
+    var code = null;
+    var codeShow = false;
+
+    // Future function to be used to parse and test Blockly generated code
+    function tokenize(code) {
+      var tokens = [];
+      console.log('tokenizing');
+    }
+
+    // Runs the Blockly code in an isolated environment
+    function runCode() {
+      var myInterpreter = new Interpreter(code);
+      myInterpreter.run();
+    }
+
+    // Toggles a view to show the JavaScript code
+    function toggleCode() {
+      codeShow = !codeShow;
+      if (codeShow)
+        generated_code.style.display = 'flex';
+      else
+        generated_code.style.display = 'none';
+    }
+
+    // Generates blockly code into JavaScript
+    function generateCode(e) {
+      if (e.type == Blockly.Events.MOVE ||
+          e.type == Blockly.Events.CHANGE ||
+          e.type == Blockly.Events.DELETE) {
+        code = Blockly.JavaScript.workspaceToCode(workspace);
+        HTML_code = code;
+        HTML_code = HTML_code.replace(/\n/g, '<br>');
+        generated_code.innerHTML = HTML_code;
+      }
+      console.log('code', code);
+    }
+
+    // Gets the data from the blockList Google Sheet
+    async function getBlockList() {
+      console.log('getBlockList()', 'GET BlockList');
+      $.ajax({
+          method: 'GET',
+          url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRS-1hHM3kpV1Q4ClJtHzl6YVyTzbuF4TFNcKsEOuJG7CCjhd1nCEnAFhRsXOha63SscRS9z-UqAZaH/pub?gid=317397626&single=true&output=csv",
+          crossDomain: true,
+          success: function(data) {
+            blockList = csvJSON(data);
+            localStorage.setItem('blockList', JSON.stringify(blockList));
+          },
+          error: function(jqXHR, status, err) {
+            console.error(jqXHR, status, err);
+          },
+          complete: function (jqXHR, status) {
+            getProblemBlocks();
+          }
+        });
+    }
+
+    // Gets the data from the problemBlocks Google Sheet
+    async function getProblemBlocks() {
+      console.log('getProblemBlocks()', 'GET ProblemBlocks');
+      $.ajax({
+        method: 'GET',
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCWHbvr7hOAmEvWdwX-Yairf3Yf2_oWmpFMwJQKyFaxsSTjlY2KnJvQc_Z0t_qVkpxWvd40OFwrFnt/pub?gid=0&single=true&output=csv",
+        crossDomain: true,
+        success: function(data) {
+          problemBlocks = csvJSON2(data);
+          localStorage.setItem('problemBlocks', JSON.stringify(problemBlocks));
+        },
+        error: function(jqXHR, status, err) {
+          console.error(jqXHR, status, err);
+        },
+        complete: function (jqXHR, status) {
+          showUnity();
+        }
+      });
+    }
+
+    // Resizes the container elements when the browser resizes
+    function onresize() {
+      document.getElementById('#canvas').width = document.body.clientWidth + 'px';
+      document.getElementById('#canvas').height = document.getElementById('#canvas').clientWidth / 960 * 600 + 'px';
+      webglContainer.style.width = document.body.clientWidth + 'px';
+      webglContainer.style.height = document.getElementById('webglContainer').clientWidth / 960 * 600 + 'px';
+      unityContainer.style.width = document.body.clientWidth + 'px';
+      unityContainer.style.height = document.getElementById('unityContainer').clientWidth / 960 * 600 + 'px';
+      blocklyContainer.style.width = document.getElementById('unityContainer').clientWidth - 160 + 'px';
+      blocklyContainer.style.height = document.getElementById('unityContainer').clientHeight - 160 + 'px';
+    }
+    window.addEventListener('resize', onresize);
+
+    window.onload = function() {
+      getBlockList();
+      onresize();
+    }
+
+    // Swaps Unity to front
+    function showUnity() {
+      blocklyContainer.style.zIndex = '-1';
+    }
+
+    // Swaps Blockly to front
+    function showBlockly() {
+      blocklyContainer.style.zIndex = '0';
+    }
+
+    // Sets and loads the problem ID, then shows Blockly
+    function setId(id) {
+      new_id = id.toString().padStart(4, '0');
+      urlVars['id'] = new_id;
+      instructionsFrame.src = './webview/instructions/' + new_id + '.html';
+      generateBlocks(problemBlocks.find(item => {
+        return item.id == new_id
+      }));
+      setTimeout(showBlockly, 500);
+    }
+    
+    // Generates the Blockly blocks denoted by the given problemBlock
+    function generateBlocks(problemBlock) {
+      console.log(problemBlock);
+      if (blocklyDiv.children[0] != undefined)
+        blocklyDiv.removeChild(blocklyDiv.children[0])
+      while (text.children.length > 0)
+        text.removeChild(text.children[0])
+      var blocks = problemBlock['blocks'];
+      for (var i = 0; i < blocks.length; i++)
+        generateBlock(blocks[i].trim());
+      workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
+      workspace.addChangeListener(generateCode);
+    }
+
+    // Converts csv to json each row is relational
+    function csvJSON(csv){
+      var lines = csv.split("\n");
+      var result = [];
+      var headers = lines[0].split(",");
+      for (var i = 1; i < lines.length; i++) {
+          var obj = {};
+          var currentline = lines[i].split(",");
+          for (var j = 0; j < headers.length; j++)
+            obj[headers[j]] = currentline[j];
+          result.push(obj);
+      }
+      return result;
+    }
+
+    // Converts csv to json column 1 denoting the problem 1 and following columns denoting the blocks to show
+    function csvJSON2(csv){
+      var lines = csv.split("\n");
+      var result = [];
+      for (var i = 1; i < lines.length; i++){
+          var obj = {};
+          var currentline = lines[i].split(",");
+          obj['id'] = currentline[0];
+          obj['blocks'] = [];
+          for (var j = 1; j < currentline.length; j++) {
+            if (currentline[j] == '')
+              break;
+            obj['blocks'].push(currentline[j]);
+          }
+          result.push(obj);unityContainer
+      }
+      return result;
+    }
+
+    </script>
+</html>

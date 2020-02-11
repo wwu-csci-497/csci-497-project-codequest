@@ -128,3 +128,7 @@ button:hover {
 .blocklyTreeLabel {
   cursor: pointer;
 }
+.max-size {
+  max-width: 1360px;
+  max-height: 850px;
+}
