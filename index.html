@@ -57,17 +57,19 @@
 
       <!-- Cancel and Submit Buttons -->
       <div id="navigation" class="flex-row-center">
-        <button id="buttonCancel" onclick="showUnity()">Close</button>
-        <button id="buttonSubmit" onclick="showUnity()">Done!</button>
+        <button id="buttonCancel" onclick="cancelBlockly()">Close</button>
+        <button id="buttonSubmit" onclick="submitAnswer()">Done!</button>
       </div>
     </div>
   </body>
   <script>
 
+    var categories = [controls, logic, math, text, lists, colour];
     var blockList = null;
     var workspace = null;
     var code = null;
     var codeShow = false;
+    var currentProblem = -1;
 
     // Future function to be used to parse and test Blockly generated code
     function tokenize(code) {
@@ -161,6 +163,17 @@
       onresize();
     }
 
+    // Reinstates Unity
+    function cancelBlockly() {
+      showUnity();
+      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', -1);
+    }
+    // Tests and completes the problem then communicates back to Unity
+    function submitAnswer() {
+      showUnity();
+      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', parseInt(currentProblem));
+    }
+
     // Swaps Unity to front
     function showUnity() {
       blocklyContainer.style.zIndex = '-1';
@@ -173,11 +186,10 @@
 
     // Sets and loads the problem ID, then shows Blockly
     function setId(id) {
-      new_id = id.toString().padStart(4, '0');
-      urlVars['id'] = new_id;
-      instructionsFrame.src = './webview/instructions/' + new_id + '.html';
+      currentProblem = id.toString().padStart(4, '0');
+      instructionsFrame.src = './webview/instructions/' + currentProblem + '.html';
       generateBlocks(problemBlocks.find(item => {
-        return item.id == new_id
+        return item.id == currentProblem
       }));
       setTimeout(showBlockly, 500);
     }
@@ -187,13 +199,16 @@
       console.log(problemBlock);
       if (blocklyDiv.children[0] != undefined)
         blocklyDiv.removeChild(blocklyDiv.children[0])
-      while (text.children.length > 0)
-        text.removeChild(text.children[0])
+      for (var i in categories)
+        while (categories[i].children.length > 0)
+          categories[i].removeChild(categories[i].children[0])
       var blocks = problemBlock['blocks'];
       for (var i = 0; i < blocks.length; i++)
         generateBlock(blocks[i].trim());
       workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
       workspace.addChangeListener(generateCode);
+      for (var i = 0; i < blocks.length; i++)
+        createVariables(workspace, blocks[i].trim());
     }
 
     // Converts csv to json each row is relational

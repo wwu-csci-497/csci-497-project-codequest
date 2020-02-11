@@ -132,3 +132,6 @@ button:hover {
   max-width: 1360px;
   max-height: 850px;
 }
+.blocklyWorkspace {
+  letter-spacing: normal;
+}
