@@ -177,6 +177,10 @@
     // Swaps Unity to front
     function showUnity() {
       blocklyContainer.style.zIndex = '-1';
+      if (workspace != null) {
+        workspace.dispose();
+        workspace = null;
+      }
     }
 
     // Swaps Blockly to front
