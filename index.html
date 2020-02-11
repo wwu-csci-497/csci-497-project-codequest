@@ -168,8 +168,10 @@
       showUnity();
       unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', -1);
     }
+
     // Tests and completes the problem then communicates back to Unity
     function submitAnswer() {
+      //if (testAnswer())
       showUnity();
       unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', parseInt(currentProblem));
     }
