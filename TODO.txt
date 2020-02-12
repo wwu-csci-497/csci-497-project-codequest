@@ -1,13 +1,12 @@
 UNITY TEAM TODO:
   1. Organize Asset Files
-  2. 
-  3. Finish tutorial level:
-      3.1 Expand Layout- Make it feel more like a tutorial with helpful tips
-        3.1.1 Make it a slower, smoother experience to get into the game
-      3.2 Portal Functionality 
-      3.3 Disable jump and double jump
-      3.4 Labels for movement and interactables
-      3.5 Interactable trigger area
+  2. Finish tutorial level:
+      2.1 Expand Layout- Make it feel more like a tutorial with helpful tips
+        2.1.1 Make it a slower, smoother experience to get into the game
+      2.2 Portal Functionality 
+      2.3 Disable jump and double jump
+      2.4 Labels for movement and interactables
+      2.5 Interactable trigger area
       
 BLOCKLY TEAM TODO:
   1. Fix webpage resizing issue 
