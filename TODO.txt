@@ -1,0 +1,12 @@
+UNITY TEAM TODO:
+  1. Get jump fixed
+  2. Resize respawn collider
+  3. Expand tutorial level:
+      3.1 Make it feel more like a tutorial with helpful tips
+      3.2 Make it a slower, smoother experience to get into the game
+      
+BLOCKLY TEAM TODO:
+  1. Fix webpage resizing issue 
+  2. Fix fullscreen issue
+  3. Present level outlines and begin coding puzzles
+  4. Approach parsing blockly responses
