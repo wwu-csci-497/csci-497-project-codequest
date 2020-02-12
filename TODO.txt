@@ -7,6 +7,7 @@ UNITY TEAM TODO:
       2.3 Disable jump and double jump
       2.4 Labels for movement and interactables
       2.5 Interactable trigger area
+  3. Zoom out slightly on cinemachine
       
 BLOCKLY TEAM TODO:
   1. Fix webpage resizing issue 
