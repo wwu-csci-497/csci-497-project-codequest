@@ -18,10 +18,15 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 - Controls: Keyboard + Mouse
 
 ### Art Assets
-- Temple
-- Temple Door 
+- Temple Door (secret passage)
 - Temple Props (Torches, Chest, Key)
 - Indoor temple background
+- Door/Bridge (side view)
+- Lights (should be able to be any color)
+- Pedestals
+- Gems
+- Lever
+- Female sprite w similar enough animations 
 
 ### Concepts Taught
 - Variables
