@@ -68,10 +68,10 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 
 #### Use Case:
 1. Puzzle open
-2. Successfully solves puzzle -> Create table entry (**attempt = #, failures = 0, success = true)
-2a. 1st Fail -> Create table entry (attempt = #, failures = 1, success = false
-3a. 2nd+ Fail -> Update (failures += 1)
-4a. Successfully solves puzzle -> Update (success = true)
+2. Successfully solves puzzle -> Create table entry (**attempt** = *#*, **failures** = *0*, **success** = *true*)
+2a. 1st Fail -> Create table entry (**attempt** = *#*, **failures** = *1*, **success** = *false*)
+3a. 2nd+ Fail -> Update (**failures** += *1*)
+4a. Successfully solves puzzle -> Update (**success** = *true*)
 ---
 
 ## Unity -> Blockly Communication Standards
