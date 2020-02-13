@@ -29,7 +29,7 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 - Condition Statements
 - Loops
 
-#### Level Descriptions (New Concept Introductions)
+### Level Descriptions (New Concept Introductions)
 ##### Tutorial - Outdoors: Jungle
 - Setting Pre-made Variables
 - Setting Strings
@@ -77,7 +77,6 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 ## Unity -> Blockly Communication Standards
 ### Standard Response From REQUEST
 ##### [HTTP Status Codes](https://restfulapi.net/http-status-codes/)
-#
 ```javascript
 setId(id);
 function = {
