@@ -55,8 +55,8 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 | 1 | username1234 | 2020-02-12 | 2010-09-08 | US-WA | 23 |
 
 #### Use Case:
-1. Register Account -> Create table entry (**username** = *username*, **creationDate** = *[current date]*, **birthday** = *[as entered]*, **iso3166_2** = *[translated by IP]*, **logins** = *0*)
-    1.1 Login -> Update (**logins** += *1*)
+1. Register Account -> Create table entry (**username** = *username*, **creationDate** = *[current date]*, **birthday** = *[as entered]*, **iso3166_2** = *[translated by IP]*, **logins** = *0*)\
+  1.1 Login -> Update (**logins** += *1*)
 
 ### Puzzle 0000 Data
 #
@@ -67,10 +67,10 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 
 #### Use Case:
 1. Puzzle open
-2. Successfully solves puzzle -> Create table entry (**attempt** = *#*, **failures** = *0*, **success** = *true*)
-    2.1 1st Fail -> Create table entry (**attempt** = *#*, **failures** = *1*, **success** = *false*)
-    2.2 2nd+ Fail -> Update (**failures** += *1*)
-    2.3 Successfully solves puzzle -> Update (**success** = *true*)
+2. Successfully solves puzzle -> Create table entry (**attempt** = *#*, **failures** = *0*, **success** = *true*)\
+  2.1 1st Fail -> Create table entry (**attempt** = *#*, **failures** = *1*, **success** = *false*)\
+  2.2 2nd+ Fail -> Update (**failures** += *1*)\
+  2.3 Successfully solves puzzle -> Update (**success** = *true*)
 
 
 ## Unity -> Blockly Communication Standards
