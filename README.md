@@ -1,18 +1,14 @@
 # CodeQuest | https://3dot.io/csci497r/
----
 
 Web app videogame to help beginners learn basic coding fundamentals.
 
 ## Mission Statement
----
 We want to create a game that teaches basic coding concepts and logic to kids. To do this, we do not want the kids to write code, instead, we want them to solve Google Blockly puzzles that we create to progress them through the game. This will provide kids who's typing skills tend to be elementary or non-existant to still learn programming. 
 
 ## Teaching Strategy
----
 Our teaching strategy is tailored to teaching Google Blockly and coding concepts at the same time. We want to focus on repetition of coding cocepts i.e. setting variables, creating strings, comparing numbers, etc., but not too repetitive as to take away from the immersion of the game. This will be a tough line to walk, but will get stronger with testing.
 
 ## Overview
----
 ### Game Features
 - Techology: Unity + Blockly
 - POV: Side-scrolling platformer
@@ -46,7 +42,6 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 - Number Comparisons
 
 ## Data Collection
----
 - Attempt to get age of user (too easy to fake if we ask -- maybe register accounts? <- then we could add saving states of game?)
 - Store data of user by session/account
 - Get region of user by IP (state/province - country)
@@ -80,7 +75,6 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 ---
 
 ## Unity -> Blockly Communication Standards
----
 ### Standard Response From REQUEST
 ##### [HTTP Status Codes](https://restfulapi.net/http-status-codes/)
 #
@@ -110,7 +104,6 @@ function = {
 
 
 ## Blockly -> Unity Communication Standards
----
 ### General
 ```javascript
 unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', JSON.stringify(body));
