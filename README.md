@@ -30,15 +30,15 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 - Loops
 
 ## Level Descriptions (New Concept Introductions)
-#### Tutorial - Outdoors: Jungle
+### Tutorial - Outdoors: Jungle
 - Setting Pre-made Variables
 - Setting Strings
 - Setting Integers
-#### Level 1 - Temple:
+### Level 1 - Temple:
 - Setting Booleans
-#### Level 2 - Temple:
+### Level 2 - Temple:
 - Creating Variables
-#### Level 3 - Temple:
+### Level 3 - Temple:
 - Number Comparisons
 
 ## Data Collection
