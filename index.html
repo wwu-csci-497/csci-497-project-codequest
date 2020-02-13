@@ -156,14 +156,14 @@
     // Reinstates Unity
     function blocklyCancel() {
       showUnity();
-      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', -1);
+      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', -1, false);
     }
 
     // Tests and completes the problem then communicates back to Unity
     function blocklySubmit() {
       //if (testAnswer())
       showUnity();
-      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', parseInt(currentProblem));
+      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', parseInt(currentProblem), true);
     }
 
     // Swaps Unity to front

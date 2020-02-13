@@ -1,0 +1,16 @@
+UNITY TEAM TODO:
+  1. Organize Asset Files
+  2. Finish tutorial level:
+      2.1 Expand Layout- Make it feel more like a tutorial with helpful tips
+        2.1.1 Make it a slower, smoother experience to get into the game
+      2.2 Portal Functionality 
+      2.3 Disable jump and double jump
+      2.4 Labels for movement and interactables
+      2.5 Interactable trigger area
+  3. Zoom out slightly on cinemachine
+      
+BLOCKLY TEAM TODO:
+  1. Fix webpage resizing issue 
+  2. Fix fullscreen issue
+  3. Present level outlines and begin coding puzzles
+  4. Approach parsing blockly responses
