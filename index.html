@@ -33,15 +33,6 @@
           <!-- Blockly Toolbar and Workspace Area -->
           <div id="blocklyDiv" class="full-dims" style="position: relative;"></div>
           <xml id="toolbox" style="display: block;">
-            <category id='controls' name="Controls" colour="120"></category>
-            <category id='logic'  name="Logic" colour="210"></category>
-            <category id='math'  name="Math" colour="230"></category>
-            <category id='text'  name="Text" colour="160"></category>
-            <category id='lists'  name="Lists" colour="260"></category>
-            <category id='colour'  name="Color" colour="20"></category>
-            <sep></sep>
-            <category id='variables'  name="Variables" colour="330" custom="VARIABLE"></category>
-            <category id='functions'  name="Functions" colour="290" custom="PROCEDURE"></category>
           </xml>
         </div>
 
@@ -57,14 +48,13 @@
 
       <!-- Cancel and Submit Buttons -->
       <div id="navigation" class="flex-row-center">
-        <button id="buttonCancel" onclick="cancelBlockly()">Close</button>
-        <button id="buttonSubmit" onclick="submitAnswer()">Done!</button>
+        <button id="buttonCancel" onclick="blocklyCancel()">Close</button>
+        <button id="buttonSubmit" onclick="blocklySubmit()">Done!</button>
       </div>
     </div>
   </body>
   <script>
 
-    var categories = [controls, logic, math, text, lists, colour];
     var blockList = null;
     var workspace = null;
     var code = null;
@@ -164,13 +154,13 @@
     }
 
     // Reinstates Unity
-    function cancelBlockly() {
+    function blocklyCancel() {
       showUnity();
       unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', -1);
     }
 
     // Tests and completes the problem then communicates back to Unity
-    function submitAnswer() {
+    function blocklySubmit() {
       //if (testAnswer())
       showUnity();
       unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', parseInt(currentProblem));
@@ -181,7 +171,11 @@
       blocklyContainer.style.zIndex = '-1';
       if (workspace != null) {
         workspace.dispose();
-        workspace = null;
+        workspace = null;          
+        while (toolbox.children.length > 0)
+          toolbox.removeChild(toolbox.children[0]);
+        for (var i in categories)
+          categories[i]['dom'] = undefined;
       }
     }
 
@@ -197,24 +191,30 @@
       generateBlocks(problemBlocks.find(item => {
         return item.id == currentProblem
       }));
-      setTimeout(showBlockly, 500);
+      setTimeout(showBlockly, 250);
     }
-    
+
     // Generates the Blockly blocks denoted by the given problemBlock
     function generateBlocks(problemBlock) {
-      console.log(problemBlock);
-      if (blocklyDiv.children[0] != undefined)
-        blocklyDiv.removeChild(blocklyDiv.children[0])
-      for (var i in categories)
-        while (categories[i].children.length > 0)
-          categories[i].removeChild(categories[i].children[0])
       var blocks = problemBlock['blocks'];
-      for (var i = 0; i < blocks.length; i++)
-        generateBlock(blocks[i].trim());
+      var variables = [];
+      var functions = [];
+      for (var i = 0 in blocks) {
+        id = generateBlock(blocks[i].trim());
+        if (id != null) {
+          if (id.split('_')[0] == 'createvar')
+            variables.push(id);
+          if (id.split('_')[0] == 'createfun')
+            functions.push(id);
+        }
+      }
+      console.log('variables', variables);
       workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
       workspace.addChangeListener(generateCode);
-      for (var i = 0; i < blocks.length; i++)
-        createVariables(workspace, blocks[i].trim());
+      for (var i in variables)
+        createWorkspaceVariable(workspace, variables[i]);
+      for (var i in functions)
+        createWorkspaceFunction(workspace, functions[i]);
     }
 
     // Converts csv to json each row is relational
