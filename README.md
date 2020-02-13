@@ -17,7 +17,7 @@ Our teaching strategy is tailored to teaching Google Blockly and coding concepts
 - Music: 
 - Controls: Keyboard + Mouse
 
-#### Art Assets
+### Art Assets
 - Temple
 - Temple Door 
 - Temple Props (Torches, Chest, Key)
