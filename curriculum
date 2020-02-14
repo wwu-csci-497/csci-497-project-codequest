@@ -1,21 +1,28 @@
+After playing CodeQuest kids should have an understanding of:
+ Variables including how to set and change their value
+ Boolean logic
+ Conditional statements with simple arithmetic and logic
+ For loops, while loops, and loop exiting
+ Simple code writing in Blockly
+
+Teaching Flow:
+ Provide simple introduction to coding in Blockly through solution of early in game logic puzzles.
+ Transition into more elaborate Blockly coding with later in game word-to-code puzzles.
+
+Level Flow:
+1. Tutorial Level   - Intro to Variables
+2. Level 1          - Variable Utilization, Boolean Logic, Intro to If Statements
+3. Level 2          - Conditional Logic with Booleans and Arithmetic
+4. Level 3          - Intro to Looping
+5. Level 4+         - Skill Combinations and Advanced Topics
+
 Tutorial: Variables
  - Set character variable equal to the character number (Setting integer value)
  - Set jump = space_bar (Setting boolean value)
  - Set teleport = true (End of level)
 
-Level 1: If Statements with Logic
- - If gem == ruby, emerald, sapphire, diamond
- - 
+Level 1: Variable Utilization, Boolean Logic, Intro to If Statements
+ - Solve logic puzzles 1-5 (If statement, Variable utilization, Boolean logic)
  
-
-Level 2: If Statements with arithmetic
-
-Level 3: While Loops
-
-Level 4: Combined
-
-Flow of teaching:
-1. Start with a created variable and setting it to a value
-2. Start with a created variable and rename a variable
-3. Create a variable
-4. 
+ Level 2+: In the works...
+ 
