@@ -10,7 +10,9 @@ UNITY TEAM TODO:
   3. Zoom out slightly on cinemachine
       
 BLOCKLY TEAM TODO:
-  1. Fix webpage resizing issue 
-  2. Fix fullscreen issue
+  1. Fix webpage resizing issue  (Brady)
+  2. Fix fullscreen issue (Brady)
   3. Present level outlines and begin coding puzzles
-  4. Approach parsing blockly responses
+  4. Approach parsing blockly responses (Brady)
+  5. Generate useful and congratulatory feedback
+  6. Create progressive animation style to reveal steps in a problem (Brady)
