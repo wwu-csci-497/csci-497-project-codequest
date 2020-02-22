@@ -1,0 +1,15 @@
+{
+    "problems" : {
+        "0001" : {
+            "toolbox": [
+                {
+                    "type" : "controls_if",
+                    "editable" : false
+                },
+                {
+                    "type" : "createvar_jump"
+                }
+            ]
+        }
+    }
+}

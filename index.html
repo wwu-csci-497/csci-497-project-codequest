@@ -32,7 +32,9 @@
 
           <!-- Blockly Toolbar and Workspace Area -->
           <div id="blocklyDiv" class="full-dims" style="position: relative;"></div>
-          <xml id="toolbox" style="display: block;">
+          <xml id="toolbox" style="display: block;"></xml>
+          <xml id="workspaceBlocks" style="display: block;">
+            <block type="controls_if" id="oui4398uoifjoijdf" x="60" y="38"></block>
           </xml>
         </div>
 
@@ -95,44 +97,12 @@
       console.log('code', code);
     }
 
-    // Gets the data from the blockList Google Sheet
-    async function getBlockList() {
-      console.log('getBlockList()', 'GET BlockList');
-      $.ajax({
-          method: 'GET',
-          url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRS-1hHM3kpV1Q4ClJtHzl6YVyTzbuF4TFNcKsEOuJG7CCjhd1nCEnAFhRsXOha63SscRS9z-UqAZaH/pub?gid=317397626&single=true&output=csv",
-          crossDomain: true,
-          success: function(data) {
-            blockList = csvJSON(data);
-            localStorage.setItem('blockList', JSON.stringify(blockList));
-          },
-          error: function(jqXHR, status, err) {
-            console.error(jqXHR, status, err);
-          },
-          complete: function (jqXHR, status) {
-            getProblemBlocks();
-          }
+    async function getProblemsJSON() {
+      console.log('getProblemsJSON()')
+      fetch("./webview/problems.json")
+        .then((response) => {
+          blockList = response.json();
         });
-    }
-
-    // Gets the data from the problemBlocks Google Sheet
-    async function getProblemBlocks() {
-      console.log('getProblemBlocks()', 'GET ProblemBlocks');
-      $.ajax({
-        method: 'GET',
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCWHbvr7hOAmEvWdwX-Yairf3Yf2_oWmpFMwJQKyFaxsSTjlY2KnJvQc_Z0t_qVkpxWvd40OFwrFnt/pub?gid=0&single=true&output=csv",
-        crossDomain: true,
-        success: function(data) {
-          problemBlocks = csvJSON2(data);
-          localStorage.setItem('problemBlocks', JSON.stringify(problemBlocks));
-        },
-        error: function(jqXHR, status, err) {
-          console.error(jqXHR, status, err);
-        },
-        complete: function (jqXHR, status) {
-          showUnity();
-        }
-      });
     }
 
     // Resizes the container elements when the browser resizes
@@ -149,7 +119,7 @@
     window.addEventListener('resize', onresize);
 
     window.onload = function() {
-      getBlockList();
+      getProblemsJSON();
       onresize();
     }
 
@@ -188,15 +158,13 @@
     function setId(id) {
       currentProblem = id.toString().padStart(4, '0');
       instructionsFrame.src = './webview/instructions/' + currentProblem + '.html';
-      generateBlocks(problemBlocks.find(item => {
-        return item.id == currentProblem
-      }));
+      generateBlocks(blockList[currentProblem]);
       setTimeout(showBlockly, 250);
     }
 
     // Generates the Blockly blocks denoted by the given problemBlock
     function generateBlocks(problemBlock) {
-      var blocks = problemBlock['blocks'];
+      var blocks = problemBlock['toolbox'];
       var variables = [];
       var functions = [];
       for (var i = 0 in blocks) {
@@ -210,45 +178,12 @@
       }
       console.log('variables', variables);
       workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
+      Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
       workspace.addChangeListener(generateCode);
       for (var i in variables)
         createWorkspaceVariable(workspace, variables[i]);
       for (var i in functions)
         createWorkspaceFunction(workspace, functions[i]);
-    }
-
-    // Converts csv to json each row is relational
-    function csvJSON(csv){
-      var lines = csv.split("\n");
-      var result = [];
-      var headers = lines[0].split(",");
-      for (var i = 1; i < lines.length; i++) {
-          var obj = {};
-          var currentline = lines[i].split(",");
-          for (var j = 0; j < headers.length; j++)
-            obj[headers[j]] = currentline[j];
-          result.push(obj);
-      }
-      return result;
-    }
-
-    // Converts csv to json column 1 denoting the problem 1 and following columns denoting the blocks to show
-    function csvJSON2(csv){
-      var lines = csv.split("\n");
-      var result = [];
-      for (var i = 1; i < lines.length; i++){
-          var obj = {};
-          var currentline = lines[i].split(",");
-          obj['id'] = currentline[0];
-          obj['blocks'] = [];
-          for (var j = 1; j < currentline.length; j++) {
-            if (currentline[j] == '')
-              break;
-            obj['blocks'].push(currentline[j]);
-          }
-          result.push(obj);unityContainer
-      }
-      return result;
     }
 
     </script>
