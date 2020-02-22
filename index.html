@@ -12,7 +12,6 @@
     <script src="./webview/blockly/blocks_compressed.js" type="text/javascript"></script>
     <script src="./webview/blockly/msg/js/en.js" type="text/javascript"></script>
     <script src="./webview/blockly/javascript_compressed.js" type="text/javascript"></script>
-    <script src="./webview/js/codequest_blocks.js" type="text/javascript"></script>
     <script src="./webview/JS-Interpreter-master/acorn_interpreter.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./webview/css/main.css">
@@ -33,9 +32,7 @@
           <!-- Blockly Toolbar and Workspace Area -->
           <div id="blocklyDiv" class="full-dims" style="position: relative;"></div>
           <xml id="toolbox" style="display: block;"></xml>
-          <xml id="workspaceBlocks" style="display: block;">
-            <block type="controls_if" id="oui4398uoifjoijdf" x="60" y="38"></block>
-          </xml>
+          <xml id="workspaceBlocks" style="display: block;"></xml>
         </div>
 
         <!-- Container for the problem -->
@@ -55,6 +52,7 @@
       </div>
     </div>
   </body>
+  <script src="./webview/js/codequest_blocks.js" type="text/javascript"></script>
   <script>
 
     var blockList = null;
@@ -98,10 +96,12 @@
     }
 
     async function getProblemsJSON() {
-      console.log('getProblemsJSON()')
       fetch("./webview/problems.json")
         .then((response) => {
-          blockList = response.json();
+          return response.json();
+        })
+        .then((value) => {
+          blockList = value;
         });
     }
 
@@ -158,17 +158,20 @@
     function setId(id) {
       currentProblem = id.toString().padStart(4, '0');
       instructionsFrame.src = './webview/instructions/' + currentProblem + '.html';
-      generateBlocks(blockList[currentProblem]);
+      createBlocks(blockList[currentProblem]);
       setTimeout(showBlockly, 250);
     }
 
     // Generates the Blockly blocks denoted by the given problemBlock
-    function generateBlocks(problemBlock) {
-      var blocks = problemBlock['toolbox'];
+    function createBlocks(problemBlock) {
+      var toolbox = problemBlock['toolbox'];
+      var workspc = problemBlock['workspace'];
       var variables = [];
       var functions = [];
-      for (var i = 0 in blocks) {
-        id = generateBlock(blocks[i].trim());
+
+      // Attaching blocks except variables and functions to the toolbox
+      for (var i = 0 in toolbox) {
+        id = createToolboxBlock(toolbox[i]);
         if (id != null) {
           if (id.split('_')[0] == 'createvar')
             variables.push(id);
@@ -176,14 +179,29 @@
             functions.push(id);
         }
       }
-      console.log('variables', variables);
+
       workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
+
+      // Attaching variables and functions to the toolbox
+      for (var i in variables)
+        createToolboxVariable(workspace, variables[i]);
+      variables = [];
+      for (var i in functions)
+        createToolboxFunction(workspace, functions[i]);
+      functions = [];
+
+      // Attaching blocks to the workspace (NOT WORKING)
+      // for (var i = 0 in workspc) {
+      //   id = createWorkspaceBlock(workspace, workspc[i]);
+      //   if (id != null) {
+      //     if (id.split('_')[0] == 'createvar')
+      //       variables.push(id);
+      //     if (id.split('_')[0] == 'createfun')
+      //       functions.push(id);
+      //   }
+      // }
       Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
       workspace.addChangeListener(generateCode);
-      for (var i in variables)
-        createWorkspaceVariable(workspace, variables[i]);
-      for (var i in functions)
-        createWorkspaceFunction(workspace, functions[i]);
     }
 
     </script>

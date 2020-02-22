@@ -56,8 +56,6 @@ var categories = [
 function createToolboxCategory(object) {
   if (object['dom'] != undefined)
     return;
-
-  console.log('Creating Toolbox Category: ' + object['id'])
   var category = document.createElement('category');
   category.setAttribute('id', object['id']);
   category.setAttribute('name', object['name']);
@@ -68,60 +66,76 @@ function createToolboxCategory(object) {
   toolbox.appendChild(category);
 }
 
-// Creates the XML Toolbar object by given ID denoted in Google Sheets
-function generateBlock(id) {
-  console.log('generateBlock()', id)
-  // Finds block in 
-  if (id.split('_')[0] != 'createvar' && id.split('_')[0] != 'createfun') {
-    var block_entry = null;
-    for (entry in blockList) {
-      if (blockList[entry]['id'].trim() == id) {
-        block_entry = blockList[entry];
-        block_entry['id'] = block_entry['id'].trim();
-        break;
-      }
-    }
-
-    if (block_entry != null) {
-      
-      if (block_entry['id'].trim().indexOf('_') > 0) {
-        createToolboxCategory(categories.find(item => {
-          return item.id == block_entry['id'].trim().split('_')[0]
-        }));
-        document.getElementById(block_entry['id'].trim().split('_')[0]).appendChild(block);
-      }
-      else {
-        createToolboxCategory(categories.find(item => {
-          return item.id == block_entry['id'].trim()
-        }));
-        document.getElementById(block_entry['id'].trim()).appendChild(block);
-      }
-    }
+// Creates the XML Toolbar block in a category
+function createToolboxBlock(type) {
+  var type = type;
+  if (type.split('_')[0] != 'createvar' && type.split('_')[0] != 'createfun') {
+    var block = document.createElement('block');
+    block.setAttribute('type', type);
+    category = type.split('_')[0];
+    createToolboxCategory(categories.find(item => {
+      return item.id == category
+    }));
+    document.getElementById(category).appendChild(block);
   }
-  else if (id.split('_')[0] == 'createvar') {
+  // Handling variables
+  else if (type.split('_')[0] == 'createvar') {
     createToolboxCategory(categories.find(item => {
       return item.id == 'variables'
     }));
-    return id;
+    return type;
   }
-  else if (id.split('_')[0] == 'createfun') {
+  // Handling functions
+  else if (type.split('_')[0] == 'createfun') {
     createToolboxCategory(categories.find(item => {
       return item.id == 'functions'
     }));
-    return id;
+    return type;
   }
   else
-    console.error('generateBlock()', 'Unknown Block ID: ' + id);
+    console.error('createToolboxBlock()', 'Unknown Block ID: ' + type);
   return null;
 }
 
-function createWorkspaceVariable(workspace, id) {
-  console.log('createVariables()', id)
-  if (id.split('_')[0] == 'createvar')
-    if (id.split('_').length > 0)
-      workspace.createVariable(id.split('_')[1].trim());
+// Creates the variables in the toolbar
+function createToolboxVariable(workspace, id) {
+  workspace.createVariable(id.split('_')[1]);
 }
 
+// Creates the functions in the toolbar
+function createToolboxFunction(workspace, id) {
+
+}
+
+// Creates the blocks in the workspace
+function createWorkspaceBlock(workspace, json) {
+  var type = json['type'];
+  if (type.split('_')[0] != 'createvar' && type.split('_')[0] != 'createfun') {
+    var block = workspace.newBlock(type, json['id']);
+    block.initSvg();
+    block.render();
+    block.moveBy(json['x'], json['y'])
+  }
+  // Handling variables
+  else if (type.split('_')[0] == 'createvar') {
+    return type;
+  }
+  // Handling functions
+  else if (type.split('_')[0] == 'createfun') {
+    return type;
+  }
+  else
+    console.error('createToolboxBlock()', 'Unknown Block ID: ' + type);
+}
+
+// Creates the variables in the toolbar
+function createWorkspaceVariable(workspace, json) {
+  var variable = workspace.createVariable(id.split('_')[1]);
+  variable.initSvg();
+  variable.render();
+}
+
+// Creates the functions in the toolbar
 function createWorkspaceFunction(workspace, id) {
 
 }

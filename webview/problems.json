@@ -1,15 +1,31 @@
 {
-    "problems" : {
-        "0001" : {
-            "toolbox": [
-                {
-                    "type" : "controls_if",
-                    "editable" : false
-                },
-                {
-                    "type" : "createvar_jump"
-                }
-            ]
-        }
+    "0000" : {
+        "toolbox" : [
+            "text",
+            "createvar_jump"
+        ],
+        "workspace" : [
+            {
+                "type" : "text",
+                "id" : "0000_text",
+                "x" : 100,
+                "y" : 100
+            }
+        ]
+    },
+    "0001" : {
+        "toolbox" : [
+            "math_number",
+            "createvar_variable gem"
+        ],
+        "workspace" : [
+            {
+                "type" : "math_number",
+                "id" : "0001_math_number",
+                "x" : 100,
+                "y" : 100
+            }
+
+        ]
     }
 }
