@@ -4,101 +4,19 @@
     <meta charset="UTF-8">
     <title>Instruction Set 0000</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-      html, body {
-        -webkit-tap-highlight-color: transparent;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        background-color: #212121;
-        color: white;
-        font-family: Lato;
-        letter-spacing: 1px;
-        box-sizing: border-box;
-        padding: 0;
-        user-select: none;
-      }
-      h2 {
-        text-align: center;
-      }
-      button {
-        width: 200px;
-        height: 50px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 20px;
-        letter-spacing: 1px;
-        box-shadow: 0 0 3px 0 black;
-        border: 2px solid white;
-        color: white;
-      }
-      button:hover {
-        opacity: .75;
-      }
-      .full-dims {
-        width: 100%;
-        height: 100%;
-      }
-      .flex-row-center {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      }
-      .flex-row-spacearound {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-      }
-      .flex-col-center {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      .character-box {
-        border-radius: 10px;
-        overflow: hidden;
-        width: 150px;
-        height: 150px;
-        border: 2px solid white;
-      }
-      #container {
-        box-shadow: 0 0 10px 0 black;
-        box-sizing: border-box;
-        padding: 15px;
-        overflow: hidden;
-      }
-      li {
-        word-break: keep-all;
-      }
-    </style>
+    <script type="text/javascript" src="../js/instructions.js"></script>
+    <link rel="stylesheet" href="../css/instructions.css">
   </head>
   <body class="flex-col-center">
     <div id="container" class="full-dims flex-col-center" style="justify-content: flex-start; padding:30px; overflow-y: auto;"">
         <h2>We need to jump over that hole!</h2><br>
         <h3>To do that, we need to assign a <span style="color:cyan;">Variable</span> named <span style="color:greenyellow;">jump</span> to <span style="color:yellow;">Space Bar</span></h3><br>
-      <ol>
-        <li>Click on "Variables" Category and drag the <image src="../images/set_jump.png" height="18" style="position:relative; top:5px;"> block into the workspace.</li><br>
-        <li>Click on the "Text" Category and drag the <image src="../images/text.png" height="18" style="position:relative; top:5px;"> text block into the workspace</li><br>
-        <li>Type into the text block 'Space Bar' so the block looks like this: <image src="../images/set_jump_space_bar.png" height="18" style="position:relative; top:5px;"></li><br>
+      <ol id="instructions" style="display: none;">
+        <li>Click on "Variables" Category and drag the <image src="../images/set_jump.png" height="18" style="position:relative; top:5px;"> block into the workspace.</li>
+        <li>Click on the "Text" Category and drag the <image src="../images/text.png" height="18" style="position:relative; top:5px;"> text block into the workspace</li>
+        <li>Type into the text block 'Space Bar' so the block looks like this: <image src="../images/set_jump_space_bar.png" height="18" style="position:relative; top:5px;"></li>
         <li>Click Done! You're programming the game!</li>
       </ol>
     </div>
   </body>
-  <script>
-
-    onresize = function() {
-
-    }
-    window.addEventListener('resize', onresize);
-
-    window.onload = function() {
-      
-    }
-  </script>
 </html>

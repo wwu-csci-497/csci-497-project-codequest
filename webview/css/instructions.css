@@ -1,0 +1,84 @@
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #212121;
+  color: white;
+  font-family: Lato;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  padding: 0;
+  user-select: none;
+}
+h2 {
+  text-align: center;
+}
+button {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 0 3px 0 black;
+  border: 2px solid white;
+  color: white;
+}
+button:hover {
+  opacity: .75;
+}
+.full-dims {
+  width: 100%;
+  height: 100%;
+}
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flex-row-spacearound {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.character-box {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  border: 2px solid white;
+}
+#container {
+  box-shadow: 0 0 10px 0 black;
+  box-sizing: border-box;
+  padding: 15px;
+  overflow: hidden;
+}
+li {
+  word-break: keep-all;
+  margin-bottom: 15px;
+}
+.hide-instruction {
+  opacity: 0;
+  transition: opacity 5s ease-in-out;
+  -moz-transition: opacity 5s ease-in-out;
+  -webkit-transition: opacity 5s ease-in-out;
+}
+.show-instruction {
+  opacity: 1;
+  transition: opacity 5s ease-in-out;
+  -moz-transition: opacity 5s ease-in-out;
+  -webkit-transition: opacity 5s ease-in-out;
+}

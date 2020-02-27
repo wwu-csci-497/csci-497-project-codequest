@@ -98,8 +98,9 @@ function createToolboxBlock(type) {
 }
 
 // Creates the variables in the toolbar
-function createToolboxVariable(workspace, id) {
-  workspace.createVariable(id.split('_')[1]);
+function createToolboxVariable(workspace, id, currentProblem) {
+  var variable = workspace.createVariable(id.split('_')[1], null, id+'_'+currentProblem);
+  console.log('all', workspace.getAllVariables());
 }
 
 // Creates the functions in the toolbar

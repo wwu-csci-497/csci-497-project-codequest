@@ -20,17 +20,17 @@
   <body class='full-dims flex-row-center'>
 
     <!-- WebGL Unity Game -->
-    <div id="webglContainer" class="webgl-content full-dims max-size" style="position:fixed; overflow:hidden; border-radius:100px;">
+    <div id="webglContainer" class="webgl-content full-dims max-size">
       <div id="unityContainer" class="full-dims max-size"></div>
     </div>
 
     <!-- Blockly Main Container -->
-    <div id="blocklyContainer" class="full-dims flex-col-center max-size" style="z-index:-1; position:absolute; overflow:hidden; border-radius:5px; padding:4px; border:10px solid #7C4518;">
+    <div id="blocklyContainer" class="full-dims flex-col-center max-size">
       <div id="container" class="full-dims flex-row-center">
         <div class="full-dims">
 
           <!-- Blockly Toolbar and Workspace Area -->
-          <div id="blocklyDiv" class="full-dims" style="position: relative;"></div>
+          <div id="blocklyDiv" class="full-dims"></div>
           <xml id="toolbox" style="display: block;"></xml>
           <xml id="workspaceBlocks" style="display: block;"></xml>
         </div>
@@ -38,9 +38,9 @@
         <!-- Container for the problem -->
         <div id="viewContainer" class="full-dims flex-col-center">
           <div id="instructions" class="full-dims flex-col-center">
-            <iframe id="instructionsFrame" src=''></iframe>
+            <iframe id="instructionsFrame" name="instructionsFrame" src=''></iframe>
           </div>
-          <div id="generated_code" style="display: none; white-space: pre;"></div>
+          <div id="generatedCode"></div>
           <div id="toggleGeneratedCode" class="flex-row-center" onclick="toggleCode()"></div>
         </div>
       </div>
@@ -77,9 +77,9 @@
     function toggleCode() {
       codeShow = !codeShow;
       if (codeShow)
-        generated_code.style.display = 'flex';
+        generatedCode.style.display = 'flex';
       else
-        generated_code.style.display = 'none';
+        generatedCode.style.display = 'none';
     }
 
     // Generates blockly code into JavaScript
@@ -90,7 +90,11 @@
         code = Blockly.JavaScript.workspaceToCode(workspace);
         HTML_code = code;
         HTML_code = HTML_code.replace(/\n/g, '<br>');
-        generated_code.innerHTML = HTML_code;
+        generatedCode.innerHTML = HTML_code;
+      }
+      if (e.type == Blockly.Events.MOVE) {
+        console.log('e', e);
+        window.frames.instructionsFrame.postMessage('{"function":"showNextInstruction"}', '*');
       }
       console.log('code', code);
     }
@@ -107,11 +111,9 @@
 
     // Resizes the container elements when the browser resizes
     function onresize() {
-      document.getElementById('#canvas').width = document.body.clientWidth + 'px';
-      document.getElementById('#canvas').height = document.getElementById('#canvas').clientWidth / 960 * 600 + 'px';
-      webglContainer.style.width = document.body.clientWidth + 'px';
+      webglContainer.style.width = document.body.clientWidth - 100 + 'px';
       webglContainer.style.height = document.getElementById('webglContainer').clientWidth / 960 * 600 + 'px';
-      unityContainer.style.width = document.body.clientWidth + 'px';
+      unityContainer.style.width = document.body.clientWidth - 100 + 'px';
       unityContainer.style.height = document.getElementById('unityContainer').clientWidth / 960 * 600 + 'px';
       blocklyContainer.style.width = document.getElementById('unityContainer').clientWidth - 160 + 'px';
       blocklyContainer.style.height = document.getElementById('unityContainer').clientHeight - 160 + 'px';
@@ -157,7 +159,7 @@
     // Sets and loads the problem ID, then shows Blockly
     function setId(id) {
       currentProblem = id.toString().padStart(4, '0');
-      instructionsFrame.src = './webview/instructions/' + currentProblem + '.html';
+      document.getElementById('instructionsFrame').src = './webview/instructions/' + currentProblem + '.html?show=1';
       createBlocks(blockList[currentProblem]);
       setTimeout(showBlockly, 250);
     }
@@ -184,10 +186,10 @@
 
       // Attaching variables and functions to the toolbox
       for (var i in variables)
-        createToolboxVariable(workspace, variables[i]);
+        createToolboxVariable(workspace, variables[i], currentProblem);
       variables = [];
       for (var i in functions)
-        createToolboxFunction(workspace, functions[i]);
+        createToolboxFunction(workspace, functions[i], currentProblem);
       functions = [];
 
       // Attaching blocks to the workspace (NOT WORKING)
