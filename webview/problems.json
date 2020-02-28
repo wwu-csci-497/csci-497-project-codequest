@@ -1,13 +1,13 @@
 {
     "0000" : {
         "toolbox" : [
-            "text",
+            "text_pressedSpace",
             "createvar_jump"
         ],
         "workspace" : [
             {
-                "type" : "text",
-                "id" : "0000_text",
+                "type" : "text_pressedSpace",
+                "id" : "0000_text_pressedSpace",
                 "x" : 100,
                 "y" : 100
             }

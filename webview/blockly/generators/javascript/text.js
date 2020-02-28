@@ -376,3 +376,10 @@ Blockly.JavaScript['text_reverse'] = function(block) {
   var code = text + '.split(\'\').reverse().join(\'\')';
   return [code, Blockly.JavaScript.ORDER_MEMBER];
 };
+
+Blockly.JavaScript['text_pressedSpace'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
