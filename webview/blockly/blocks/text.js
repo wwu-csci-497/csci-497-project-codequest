@@ -234,6 +234,22 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "helpUrl": "%{BKY_TEXT_CHARAT_HELPURL}",
     "inputsInline": true,
     "mutator": "text_charAt_mutator"
+  },
+  {
+    "type": "text_pressedSpace",
+    "message0": "Pressed Spacebar",
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "text_jump",
+    "message0": "Player Jump",
+    "previousStatement": null,
+    "colour": 330,
+    "tooltip": "",
+    "helpUrl": ""
   }
 ]);  // END JSON EXTRACT (Do not delete this comment.)
 
@@ -591,6 +607,17 @@ Blockly.Blocks['text_reverse'] = {
       "tooltip": Blockly.Msg['TEXT_REVERSE_TOOLTIP'],
       "helpUrl": Blockly.Msg['TEXT_REVERSE_HELPURL']
     });
+  }
+};
+
+Blockly.Blocks['text_pressedSpace'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Pressed Spacebar");
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
   }
 };
 
