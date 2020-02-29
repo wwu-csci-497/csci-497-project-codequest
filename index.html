@@ -128,14 +128,26 @@
     // Reinstates Unity
     function blocklyCancel() {
       showUnity();
-      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', -1, false);
+      body = {
+        'method': 'POST',
+        'functionName': 'blocklySubmit',
+        'problemId': currentProblem,
+        'solved': false
+      };
+      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', JSON.stringify(body)) ;
     }
 
     // Tests and completes the problem then communicates back to Unity
     function blocklySubmit() {
       //if (testAnswer())
       showUnity();
-      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', parseInt(currentProblem), true);
+      body = {
+        'method': 'POST',
+        'functionName': 'blocklySubmit',
+        'problemId': currentProblem,
+        'solved': true
+      };
+      unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', JSON.stringify(body)) ;
     }
 
     // Swaps Unity to front
