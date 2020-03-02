@@ -2,12 +2,19 @@
     "0000" : {
         "toolbox" : [
             "text_pressedSpace",
-            "createvar_jump"
+            "text_jump",
+            "controls_if"
         ],
         "workspace" : [
             {
                 "type" : "text_pressedSpace",
                 "id" : "0000_text_pressedSpace",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "text_jump",
+                "id" : "0000_text_jump",
                 "x" : 100,
                 "y" : 100
             }

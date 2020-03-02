@@ -612,12 +612,27 @@ Blockly.Blocks['text_reverse'] = {
 
 Blockly.Blocks['text_pressedSpace'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField("Pressed Spacebar");
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.jsonInit({
+      "type": "text_pressedSpace",
+      "message0": "Pressed Spacebar",
+      "output": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    })
+  }
+};
+
+Blockly.Blocks['text_jump'] = {
+  init: function() {
+    this.jsonInit({
+        "type": "text_jump",
+        "message0": "Player Jump",
+        "previousStatement": null,
+        "colour": 330,
+        "tooltip": "",
+        "helpUrl": ""
+      })
   }
 };
 
