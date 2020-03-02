@@ -3,7 +3,7 @@
         "toolbox" : [
             "text_pressedSpace",
             "text_jump",
-            "controls_if"
+            "logic_when_do"
         ],
         "workspace" : [
             {
@@ -15,6 +15,12 @@
             {
                 "type" : "text_jump",
                 "id" : "0000_text_jump",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "logic_when_do",
+                "id" : "0000_when_do",
                 "x" : 100,
                 "y" : 100
             }
