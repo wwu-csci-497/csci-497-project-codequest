@@ -614,7 +614,7 @@ Blockly.Blocks['text_pressedSpace'] = {
   init: function() {
     this.jsonInit({
       "type": "text_pressedSpace",
-      "message0": "Pressed Spacebar",
+      "message0": "Press Spacebar",
       "output": null,
       "colour": 230,
       "tooltip": "",
@@ -629,6 +629,7 @@ Blockly.Blocks['text_jump'] = {
         "type": "text_jump",
         "message0": "Player Jump",
         "previousStatement": null,
+        "nextStatement": null,
         "colour": 330,
         "tooltip": "",
         "helpUrl": ""
