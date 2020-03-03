@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
-    <script src="./webview/blockly/blockly_compressed.js" type="text/javascript"></script>
+    <script src="./webview/blockly/blockly_uncompressed.js" type="text/javascript"></script>
     <script src="./webview/blockly/blocks_compressed.js" type="text/javascript"></script>
+    <script src="./webview/js/custom_block_definitions.js" type="text/javascript"></script>
     <script src="./webview/blockly/msg/js/en.js" type="text/javascript"></script>
     <script src="./webview/blockly/javascript_compressed.js" type="text/javascript"></script>
+    <script src="./webview/js/custom_block_generators.js" type="text/javascript"></script>
     <script src="./webview/JS-Interpreter-master/acorn_interpreter.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./webview/css/main.css">
@@ -96,7 +98,7 @@
         console.log('e', e);
         window.frames.instructionsFrame.postMessage('{"function":"showNextInstruction"}', '*');
       }
-      console.log('code', code);
+      console.log('code\n', code);
     }
 
     async function getProblemsJSON() {

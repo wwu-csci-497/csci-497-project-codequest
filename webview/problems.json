@@ -1,20 +1,20 @@
 {
     "0000" : {
         "toolbox" : [
-            "text_pressedSpace",
-            "text_jump",
-            "logic_when_do"
+            "logic_when_do",
+            "logic_pressedSpace",
+            "logic_playerJump"
         ],
         "workspace" : [
             {
-                "type" : "text_pressedSpace",
-                "id" : "0000_text_pressedSpace",
+                "type" : "logic_pressedSpace",
+                "id" : "0000_logic_pressedSpace",
                 "x" : 100,
                 "y" : 100
             },
             {
-                "type" : "text_jump",
-                "id" : "0000_text_jump",
+                "type" : "logic_playerJump",
+                "id" : "logic_playerJump",
                 "x" : 100,
                 "y" : 100
             },

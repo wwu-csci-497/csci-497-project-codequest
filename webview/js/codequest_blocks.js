@@ -68,6 +68,7 @@ function createToolboxCategory(object) {
 
 // Creates the XML Toolbar block in a category
 function createToolboxBlock(type) {
+  console.log('createToolboxBlock(' + type + ')')
   var type = type;
   if (type.split('_')[0] != 'createvar' && type.split('_')[0] != 'createfun') {
     var block = document.createElement('block');
