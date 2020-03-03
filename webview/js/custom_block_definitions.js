@@ -20,7 +20,7 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: "When a value is true, then do something."
   },
   {
-    type: "logic_pressedSpace",
+    type: "actions_pressedSpace",
     message0: "press spacebar",
     output: "Boolean",
     colour: "0",
@@ -28,10 +28,10 @@ Blockly.defineBlocksWithJsonArray([
     extensions: ["parent_tooltip_when_inline"]
   },
   {
-    type: "logic_playerJump",
+    type: "actions_playerJump",
     message0: "player jump",
     previousStatement: null,
-    colour: "240",
+    colour: "0",
     tooltip: "Player jumps.",
     extensions: ["parent_tooltip_when_inline"]
   }

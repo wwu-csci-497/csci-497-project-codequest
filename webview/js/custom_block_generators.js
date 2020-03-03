@@ -13,9 +13,9 @@ Blockly.JavaScript.logic_when_do = function(a) {
     if (a.getInput("ELSE") || Blockly.JavaScript.STATEMENT_SUFFIX) e = Blockly.JavaScript.statementToCode(a, "ELSE"), Blockly.JavaScript.STATEMENT_SUFFIX && (e = Blockly.JavaScript.prefixLines(Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_SUFFIX, a), Blockly.JavaScript.INDENT) + e), c += " else {\n" + e + "}";
     return c + "\n";
 };
-Blockly.JavaScript.logic_pressedSpace = function(a) {
+Blockly.JavaScript.actions_pressedSpace = function(a) {
     return ["true", Blockly.JavaScript.ORDER_ATOMIC];
 };
-Blockly.JavaScript.logic_playerJump = function(a) {
-    return "player_jump = true;";
+Blockly.JavaScript.actions_playerJump = function(a) {
+    return "player_jump = true;\n";
 };

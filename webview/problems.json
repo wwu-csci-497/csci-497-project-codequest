@@ -2,19 +2,19 @@
     "0000" : {
         "toolbox" : [
             "logic_when_do",
-            "logic_pressedSpace",
-            "logic_playerJump"
+            "actions_pressedSpace",
+            "actions_playerJump"
         ],
         "workspace" : [
             {
-                "type" : "logic_pressedSpace",
-                "id" : "0000_logic_pressedSpace",
+                "type" : "actions_pressedSpace",
+                "id" : "0000_actions_pressedSpace",
                 "x" : 100,
                 "y" : 100
             },
             {
-                "type" : "logic_playerJump",
-                "id" : "logic_playerJump",
+                "type" : "actions_playerJump",
+                "id" : "actions_playerJump",
                 "x" : 100,
                 "y" : 100
             },

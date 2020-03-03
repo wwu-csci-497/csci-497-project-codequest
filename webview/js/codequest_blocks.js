@@ -2,6 +2,12 @@
 var categories = [
   {
     dom: undefined,
+    id: 'actions',
+    name: 'Actions',
+    colour: '0'
+  },
+  {
+    dom: undefined,
     id: 'controls',
     name: 'Controls',
     colour: '120'
@@ -34,7 +40,7 @@ var categories = [
     dom: undefined,
     id: 'colour',
     name: 'Colour',
-    colour: '20'
+    colour: '50'
   },
   {
     dom: undefined,
