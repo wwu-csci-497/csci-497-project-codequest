@@ -267,6 +267,24 @@ Blockly.defineBlocksWithJsonArray([ // Mutator blocks. Do not extract.
     "enableContextMenu": false,
     "style": "logic_blocks",
     "tooltip": "%{BKY_CONTROLS_IF_ELSE_TOOLTIP}"
+  },
+  
+  {
+    "type": "controls_when_do",
+    "message0": "when %1 do %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      }
+    ],
+    "colour": 120,
+    "tooltip": "",
+    "helpUrl": ""
   }
 ]);
 
@@ -525,6 +543,28 @@ Blockly.Constants.Logic.CONTROLS_IF_TOOLTIP_EXTENSION = function() {
     }
     return '';
   }.bind(this));
+};
+
+Blockly.Blocks['logic_when_do'] = {
+  init: function () {
+      this.jsonInit({
+          "type": "when_do",
+          "message0": "when %1 do %2",
+          "args0": [
+            {
+              "type": "input_value",
+              "name": "NAME"
+            },
+            {
+              "type": "input_statement",
+              "name": "NAME"
+            }
+          ],
+          "colour": 120,
+          "tooltip": "",
+          "helpUrl": ""
+        })
+  }
 };
 
 Blockly.Extensions.register('controls_if_tooltip',

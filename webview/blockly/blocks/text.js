@@ -612,12 +612,50 @@ Blockly.Blocks['text_reverse'] = {
 
 Blockly.Blocks['text_pressedSpace'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField("Pressed Spacebar");
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.jsonInit({
+      "type": "text_pressedSpace",
+      "message0": "Press Spacebar",
+      "output": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    })
+  }
+};
+
+Blockly.Blocks['text_jump'] = {
+  init: function() {
+    this.jsonInit({
+        "type": "text_jump",
+        "message0": "Player Jump",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 330,
+        "tooltip": "",
+        "helpUrl": ""
+      })
+  }
+};
+
+Blockly.Blocks['text_when_do'] = {
+  init: function () {
+      this.jsonInit({
+          "type": "when_do",
+          "message0": "when %1 do %2",
+          "args0": [
+            {
+              "type": "input_value",
+              "name": "NAME"
+            },
+            {
+              "type": "input_statement",
+              "name": "NAME"
+            }
+          ],
+          "colour": 120,
+          "tooltip": "",
+          "helpUrl": ""
+        })
   }
 };
 
