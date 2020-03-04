@@ -2,19 +2,19 @@
     "0000" : {
         "toolbox" : [
             "logic_when_do",
-            "actions_pressedSpace",
-            "actions_playerJump"
+            "actions_pressed_space",
+            "actions_player_jump"
         ],
         "workspace" : [
             {
-                "type" : "actions_pressedSpace",
-                "id" : "0000_actions_pressedSpace",
+                "type" : "actions_pressed_space",
+                "id" : "0000_actions_pressed_space",
                 "x" : 100,
                 "y" : 100
             },
             {
-                "type" : "actions_playerJump",
-                "id" : "actions_playerJump",
+                "type" : "actions_player_jump",
+                "id" : "0000_actions_player_jump",
                 "x" : 100,
                 "y" : 100
             },
@@ -28,17 +28,49 @@
     },
     "0001" : {
         "toolbox" : [
-            "math_number",
-            "createvar_variable gem"
+            "logic_when_do",
+            "actions_collect_gem",
+            "actions_near_and_enter"
         ],
         "workspace" : [
             {
-                "type" : "math_number",
-                "id" : "0001_math_number",
+                "type" : "actions_collect_gem",
+                "id" : "0001_actions_collect_gem",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "actions_near_and_enter",
+                "id" : "0001_actions_near_and_enter",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "logic_when_do",
+                "id" : "0001_when_do",
                 "x" : 100,
                 "y" : 100
             }
-
+        ]
+    },
+    "1000" : {
+        "toolbox" : [
+            "createvar_flame color",
+            "createvar_red",
+            "createvar_blue",
+            "createvar_green"
+        ],
+        "workspace" : [
+        ]
+    },
+    "1001" : {
+        "toolbox" : [
+            "createvar_flame color",
+            "createvar_red",
+            "createvar_blue",
+            "createvar_green"
+        ],
+        "workspace" : [
         ]
     }
 }

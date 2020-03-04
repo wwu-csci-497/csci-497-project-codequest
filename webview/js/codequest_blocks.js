@@ -59,7 +59,7 @@ var categories = [
 ];
 
 // Creates the XML <category> in the Toolbar
-function createToolboxCategory(object) {
+function createToolboxCategory(object) {S
   if (object['dom'] != undefined)
     return;
   var category = document.createElement('category');
