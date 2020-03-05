@@ -5,15 +5,9 @@ import glob, os
 from zipfile import ZipFile
 os.chdir(os.getcwd())
 
-commit_msg = ''
-if len(sys.argv) > 1:
-    commit_msg = sys.argv[1]
-else:
-    commit_msg = ''
-
 version = ''
-if len(sys.argv) > 2:
-    version = sys.argv[2]
+if len(sys.argv) > 1:
+    version = sys.argv[1]
 else:
     version_file = open('version.txt', 'r')
     last_version = format(float(version_file.read()), '.6f')
@@ -30,7 +24,3 @@ for file in glob.glob('./*.html'):
     filedata = filedata.replace('.css"', '.css?ver=' + str(version) + '"')
     with open(file, 'w') as f:
       f.write(filedata)
-
-os.system('git add *')
-os.system('git commit -m "v' + str(version) + ': ' + commit_msg + '"')
-os.system('git push')
