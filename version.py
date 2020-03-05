@@ -2,7 +2,6 @@
 import fileinput
 import sys
 import glob, os
-from zipfile import ZipFile
 os.chdir(os.getcwd())
 
 version = ''

@@ -34,6 +34,7 @@ button:hover {
   opacity: .75;
 }
 .full-dims {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -147,4 +148,76 @@ border-radius: 100px;
 }
 .blocklyWorkspace {
   letter-spacing: normal;
+}
+.toolTip {
+  position: absolute;
+  top: auto;
+  bottom: 0px;
+  width: 50%;
+  height: 100px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  z-index: 71;
+}
+.toolTip-character {
+  position: absolute;
+  top: auto;
+  bottom: 0px;
+  left: 0px;
+  box-sizing: border-box;
+  height: 100px;
+  background: red;
+  z-index: 71;
+  cursor: pointer;
+}
+
+.toolTip-message {
+  position: relative;
+  width: auto;
+  height: 90%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  left: -15px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: #EEEEEE;
+}
+.toolTip-characterBubble {
+  content: "";
+  position: relative;
+  width: 0;
+  height: 0;
+  left: -15px;
+  border-top: 13px solid transparent;
+  border-right: 26px solid #EEEEEE;
+  border-bottom: 13px solid transparent;
+}
+
+.toolTip-message::-webkit-scrollbar {
+  position: relative;
+  right: 15px;
+  width: 5px;
+}
+
+/* Track */
+.toolTip-message::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.toolTip-message::-webkit-scrollbar-thumb {
+  background: #CCCCCC;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+.toolTip-message::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: #BBBBBB; 
 }
