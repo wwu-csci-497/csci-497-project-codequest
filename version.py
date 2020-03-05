@@ -19,8 +19,8 @@ else:
     last_version = format(float(version_file.read()), '.6f')
     version = format(float(last_version) + 0.000001, '.6f')
     print('v' + str(version))
-    write_version = open('version.txt', 'w')
-    write_version.write(str(version))
+    with open('./version.txt', 'w') as f:
+      f.write(str(version))
 
 for file in glob.glob('./*.html'):
     with open(file, 'r') as f :
