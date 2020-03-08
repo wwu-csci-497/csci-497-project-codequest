@@ -39,7 +39,7 @@ var categories = [
   {
     dom: undefined,
     id: 'colour',
-    name: 'Colour',
+    name: 'Color',
     colour: '50'
   },
   {

@@ -34,3 +34,9 @@ Blockly.JavaScript.logic_when_do = function(a) {
 Blockly.JavaScript.logic_collected_gem = function(a) {
     return "gem_0_in_inventory == true;\n";
 };
+
+// Generator Cateogry:  Color
+Blockly.JavaScript.colour_flame = function(a) {
+    console.log(a);
+    return "color";
+};

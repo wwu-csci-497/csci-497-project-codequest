@@ -1,5 +1,3 @@
-Blockly.Blocks.logic = {};
-Blockly.Constants.Logic = {};
 Blockly.defineBlocksWithJsonArray([
 
   // Custom Block Category:  Actions
@@ -68,6 +66,32 @@ Blockly.defineBlocksWithJsonArray([
     nextStatement: null,
     style: "logic_blocks",
     tooltip: "When a value is true, then do something."
-  }
+  },
+
+  // Custom Block Category: Color
+  {
+  "type": "colour_flame",
+  "message0": "color: %1",
+  "args0": [
+    {
+      "type": "field_colour",
+      "name": "COLOUR",
+      "colour": "#DD540D"
+    }
+  ],
+  "extensions": ["set_flame_colours_extension"]
+}
 
 ]);
+
+Blockly.Extensions.register('set_flame_colours_extension',
+  function() {
+    var field = this.getField("COLOUR");
+    field.setColours(
+      ['#DD540D', '#FFFFFF', '#37FF22',
+        '#FF0DA9', '#0Df3FF', '#002CAD'],
+      ['Orange', 'White', 'Green',
+        'Purple', 'Cyan', 'Blue']);
+    field.setColumns(3);
+  }
+);
