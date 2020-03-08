@@ -54,3 +54,13 @@ Blockly.JavaScript.logic_action_and = function(a) {
 Blockly.JavaScript.logic_collected_gem = function(a) {
     return "gem_0_in_inventory == true;\n";
 };
+
+// Generator Cateogry:  Color
+Blockly.JavaScript.colour_flame = function(a) {
+    return a.getFieldValue('COLOUR');
+};
+
+// Generator Category:  Object
+Blockly.JavaScript.objects_flame = function(a) {
+    return "flame_colour = ";
+}
