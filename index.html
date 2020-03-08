@@ -113,11 +113,9 @@
       getProblemsJSON();
       onresize();
       workspaceContainer.onclick = function() {
-        console.log("hide tooltip");
         toolTip.style.zIndex = '-1';
       }
       toolTipCharacter.onclick = function() {
-        console.log("show tooltip");
         toolTip.style.zIndex = '71';
       }
     }
@@ -176,13 +174,28 @@
       });
     }
 
+    // Function that holds the information for each tooltip
+    function toolTipGenerator(id) {
+      toolTipCharacter.style.width = blocklyDiv.children[0].children[0].clientWidth + 'px';
+      toolTip.style.left = toolTipCharacter.clientWidth + 'px';
+      switch(parseInt(id)) {
+        case 0:
+          writeTooltip("It looks like I need to jump over that hole. You as the player can write the code to help me do this! Drag the blocks into the workspace so that I can jump whenever you hit the space bar.");
+          break;
+        case 1:
+          writeTooltip("We need to collect that gem! Code this puzzle so that when you press enter by the gem over there, I can pick it up.");
+          break;
+        default:
+          writeTooltip("No tooltip for Blockly Puzzle ID: " + id);
+          break;
+      }
+    }
+
     // Sets and loads the problem ID, then shows Blockly
     function setId(id) {
       currentProblem = id.toString().padStart(4, '0');
       createBlocks(blockList[currentProblem]);
-      toolTipCharacter.style.width = blocklyDiv.children[0].children[0].clientWidth + 'px';
-      toolTip.style.left = toolTipCharacter.clientWidth + 'px';
-      writeTooltip("It looks like I need to jump over that hole. You as the player can write the code to help me do this! Drag the blocks into the workspace so that I can jump whenever you hit the space bar.")
+      toolTipGenerator(id);
       setTimeout(showBlockly, 250);
     }
 

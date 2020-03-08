@@ -168,10 +168,11 @@ border-radius: 100px;
   bottom: 0px;
   left: 0px;
   box-sizing: border-box;
-  height: 100px;
-  background: red;
+  height: 90px;
   z-index: 71;
   cursor: pointer;
+  background: url('../images/idle.gif') no-repeat center center;
+  background-size: contain;
 }
 
 .toolTip-message {
