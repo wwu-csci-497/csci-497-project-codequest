@@ -37,6 +37,10 @@ Blockly.JavaScript.logic_collected_gem = function(a) {
 
 // Generator Cateogry:  Color
 Blockly.JavaScript.colour_flame = function(a) {
-    console.log(a);
-    return "color";
+    return a.getFieldValue('COLOUR');
 };
+
+// Generator Category:  Object
+Blockly.JavaScript.objects_flame = function(a) {
+    return "flame_colour = ";
+}

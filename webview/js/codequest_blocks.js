@@ -8,6 +8,12 @@ var categories = [
   },
   {
     dom: undefined,
+    id: 'objects',
+    name: 'Objects',
+    colour: '25'
+  },
+  {
+    dom: undefined,
     id: 'controls',
     name: 'Controls',
     colour: '120'

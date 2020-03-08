@@ -68,19 +68,31 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: "When a value is true, then do something."
   },
 
-  // Custom Block Category: Color
+  // Custom Block Category:  Color
   {
-  "type": "colour_flame",
-  "message0": "color: %1",
-  "args0": [
-    {
-      "type": "field_colour",
-      "name": "COLOUR",
-      "colour": "#DD540D"
-    }
-  ],
-  "extensions": ["set_flame_colours_extension"]
-}
+    type: "colour_flame",
+    message0: "color: %1",
+    output: "String",
+    args0: [
+      {
+        type: "field_colour",
+        "name": "COLOUR",
+        colour: "#DD540D"
+      }
+    ],
+    extensions: ["set_flame_colours_extension"]
+  },
+
+  // Custom Block Category:  Objects
+  {
+    type: "objects_flame",
+    message0: "flame %1",
+    args0: [{
+      type: "input_value",
+      "name": "FLAME_COLOUR0"
+    }],
+    tooltip: "The flame."
+  }
 
 ]);
 
