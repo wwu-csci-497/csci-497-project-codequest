@@ -16,6 +16,7 @@
     <script src="./webview/js/custom_block_generators.js?ver=1.000004" type="text/javascript"></script>
     <script src="./webview/JS-Interpreter-master/acorn_interpreter.js?ver=1.000004"></script>
     <script src="./webview/typed.js-master/lib/typed.js?ver=1.000004"></script>
+    <script src="./webview/js/parser.js"></script>
     <link rel="stylesheet" href="./webview/css/main.css?ver=1.000004">
     <script>var unityInstance = UnityLoader.instantiate("unityContainer", "./Build/Downloads.json", {onProgress: UnityProgress});</script>
   </head>
@@ -65,12 +66,6 @@
     var codeShow = false;
     var currentProblem = -1;
 
-    // Future function to be used to parse and test Blockly generated code
-    function tokenize(code) {
-      var tokens = [];
-      console.log('tokenizing');
-    }
-
     // Runs the Blockly code in an isolated environment
     function runCode() {
       var myInterpreter = new Interpreter(code);
@@ -80,12 +75,19 @@
 
     // Generates blockly code into JavaScript
     function generateCode(e) {
+      code = null;
       if (e.type == Blockly.Events.MOVE ||
           e.type == Blockly.Events.CHANGE ||
           e.type == Blockly.Events.DELETE) {
         code = Blockly.JavaScript.workspaceToCode(workspace);
       }
       console.log('code\n', code);
+      var tokens = tokenize(code, 0);
+      if (tokens != null) {
+        console.log('tokens\n', tokens.all());
+        parser(tokens.all(), 0);
+        console.log('parserCur', parserCur);
+      }
     }
 
     async function getProblemsJSON() {
