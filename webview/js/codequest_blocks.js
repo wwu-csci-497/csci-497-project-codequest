@@ -44,9 +44,9 @@ var categories = [
   },
   {
     dom: undefined,
-    id: 'colour',
-    name: 'Color',
-    colour: '50'
+    id: 'attributes',
+    name: 'Attributes',
+    colour: '65'
   },
   {
     dom: undefined,

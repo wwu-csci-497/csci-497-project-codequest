@@ -71,7 +71,8 @@
         "toolbox" : [
             "logic_when_do",
             "actions_pressed_space",
-            "actions_player_jump"
+            "actions_player_jump",
+            "actions_midair_boost"
         ],
         "workspace" : [
             {
@@ -87,6 +88,12 @@
                 "y" : 100
             },
             {
+                "type" : "actions_player_double_jump",
+                "id" : "1000_actions_player_double_jump",
+                "x" : 100,
+                "y" : 100
+            },
+            {
                 "type" : "logic_when_do",
                 "id" : "1000_when_do",
                 "x" : 100,
@@ -96,12 +103,22 @@
     },
     "1001" : {
         "toolbox" : [
-            "createvar_flame color",
-            "createvar_red",
-            "createvar_blue",
-            "createvar_green"
+            "objects_flame",
+            "attributes_color"
         ],
         "workspace" : [
+            {
+                "type" : "objects_flame",
+                "id" : "1000_objects_flame",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "attributes_color",
+                "id" : "1000_attributes_color",
+                "x" : 100,
+                "y" : 100
+            }
         ]
     }
 }

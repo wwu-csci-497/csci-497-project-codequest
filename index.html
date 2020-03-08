@@ -170,7 +170,7 @@
       typedToolTip.innerHTML = '';
       var typed = new Typed('#typedToolTip', {
         strings: [message],
-        typeSpeed: 0,
+        typeSpeed: 25,
         backSpeed: 0,
         loop: false
       });
@@ -182,7 +182,7 @@
       createBlocks(blockList[currentProblem]);
       toolTipCharacter.style.width = blocklyDiv.children[0].children[0].clientWidth + 'px';
       toolTip.style.left = toolTipCharacter.clientWidth + 'px';
-      writeTooltip("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+      writeTooltip("It looks like I need to jump over that hole. You as the player can write the code to help me do this! Drag the blocks into the workspace so that I can jump whenever you hit the space bar.")
       setTimeout(showBlockly, 250);
     }
 

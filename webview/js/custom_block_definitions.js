@@ -14,17 +14,26 @@ Blockly.defineBlocksWithJsonArray([
     type: "actions_pressed_e",
     message0: "press \"E\"",
     output: "ActionBoolean",
-    colour: "0",
+    colour: "120",
     tooltip: "Enter is pressed.",
     extensions: ["parent_tooltip_when_inline"]
   },
   {
     type: "actions_player_jump",
-    message0: "player jump",
+    message0: "character jump",
     previousStatement: null,
     nextStatement: null,
     colour: "0",
     tooltip: "Player jumps.",
+    extensions: ["parent_tooltip_when_inline"]
+  },
+  {
+    type: "actions_player_double_jump",
+    message0: "mid-air boost",
+    previousStatement: null,
+    nextStatement: null,
+    colour: "0",
+    tooltip: "Player performs double jump.",
     extensions: ["parent_tooltip_when_inline"]
   },
   {
@@ -39,7 +48,7 @@ Blockly.defineBlocksWithJsonArray([
     type: "actions_near_gem",
     message0: "near gem",
     output: "ActionBoolean",
-    colour: "0",
+    colour: "120",
     tooltip: "Player is within interactable area for gem.",
     extensions: ["parent_tooltip_when_inline"]
   },
@@ -50,6 +59,21 @@ Blockly.defineBlocksWithJsonArray([
     colour: "0",
     tooltip: "Player is on the ground.",
     extensions: ["parent_tooltip_when_inline"]
+  },
+
+  // Custom Block Category:  Attributes
+  {
+    type: "attributes_color",
+    message0: "color: %1",
+    output: "AttributeString",
+    args0: [
+      {
+        type: "field_colour",
+        "name": "COLOUR",
+        colour: "#DD540D"
+      }
+    ],
+    extensions: ["set_flame_colours_extension"]
   },
 
   // Custom Block Category:  Logic
@@ -99,34 +123,23 @@ Blockly.defineBlocksWithJsonArray([
     style: "logic_blocks"
   },
 
-  // Custom Block Category:  Color
-  {
-    type: "colour_flame",
-    message0: "color: %1",
-    output: "String",
-    args0: [
-      {
-        type: "field_colour",
-        "name": "COLOUR",
-        colour: "#DD540D"
-      }
-    ],
-    extensions: ["set_flame_colours_extension"]
-  },
-
   // Custom Block Category:  Objects
   {
     type: "objects_flame",
     message0: "flame %1",
     args0: [{
       type: "input_value",
-      "name": "FLAME_COLOUR0"
+      "name": "FLAME_COLOUR0",
+      check: "AttributeString"
     }],
+    colour: "25",
     tooltip: "The flame."
   }
 
 ]);
 
+
+// Custom Extensions
 Blockly.Extensions.register('set_flame_colours_extension',
   function() {
     var field = this.getField("COLOUR");
