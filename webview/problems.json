@@ -28,9 +28,11 @@
     },
     "0001" : {
         "toolbox" : [
-            "logic_when_do",
             "actions_collect_gem",
-            "actions_near_and_enter"
+            "actions_near_gem",
+            "actions_pressed_e",
+            "logic_when_do",
+            "logic_action_and"
         ],
         "workspace" : [
             {
@@ -40,8 +42,14 @@
                 "y" : 100
             },
             {
-                "type" : "actions_near_and_enter",
-                "id" : "0001_actions_near_and_enter",
+                "type" : "actions_near_gem",
+                "id" : "0001_actions_near_gem",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "actions_pressed_e",
+                "id" : "0001_actions_pressed_e",
                 "x" : 100,
                 "y" : 100
             },
@@ -50,17 +58,40 @@
                 "id" : "0001_when_do",
                 "x" : 100,
                 "y" : 100
+            },
+            {
+                "type" : "logic_action_and",
+                "id" : "0001_logic_action_and",
+                "x" : 100,
+                "y" : 100
             }
         ]
     },
     "1000" : {
         "toolbox" : [
-            "createvar_flame color",
-            "createvar_red",
-            "createvar_blue",
-            "createvar_green"
+            "logic_when_do",
+            "actions_pressed_space",
+            "actions_player_jump"
         ],
         "workspace" : [
+            {
+                "type" : "actions_pressed_space",
+                "id" : "1000_actions_pressed_space",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "actions_player_jump",
+                "id" : "1000_actions_player_jump",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "logic_when_do",
+                "id" : "1000_when_do",
+                "x" : 100,
+                "y" : 100
+            }
         ]
     },
     "1001" : {

@@ -6,15 +6,16 @@ Blockly.defineBlocksWithJsonArray([
   {
     type: "actions_pressed_space",
     message0: "press spacebar",
+    // Special case action block outputs Boolean
     output: "Boolean",
     colour: "0",
     tooltip: "Spacebar is pressed.",
     extensions: ["parent_tooltip_when_inline"]
   },
   {
-    type: "actions_pressed_enter",
-    message0: "press enter",
-    output: "Boolean",
+    type: "actions_pressed_e",
+    message0: "press \"E\"",
+    output: "ActionBoolean",
     colour: "0",
     tooltip: "Enter is pressed.",
     extensions: ["parent_tooltip_when_inline"]
@@ -23,6 +24,7 @@ Blockly.defineBlocksWithJsonArray([
     type: "actions_player_jump",
     message0: "player jump",
     previousStatement: null,
+    nextStatement: null,
     colour: "0",
     tooltip: "Player jumps.",
     extensions: ["parent_tooltip_when_inline"]
@@ -36,18 +38,20 @@ Blockly.defineBlocksWithJsonArray([
     extensions: ["parent_tooltip_when_inline"]
   },
   {
-    type: "actions_near_and_enter",
-    message0: "near gem %1 press enter",
-    args0: [
-      {
-        type: "field_dropdown",
-        name: "OP",
-        options: [["%{BKY_LOGIC_OPERATION_AND}", "AND"]]
-      }
-    ],
-    output: "Boolean",
+    type: "actions_near_gem",
+    message0: "near gem",
+    output: "ActionBoolean",
     colour: "0",
-    tooltip: "Player is within interactable area for gem and presses enter."
+    tooltip: "Player is within interactable area for gem.",
+    extensions: ["parent_tooltip_when_inline"]
+  },
+  {
+    type: "actions_on_ground",
+    message0: "on ground",
+    output: "ActionBoolean",
+    colour: "0",
+    tooltip: "Player is on the ground.",
+    extensions: ["parent_tooltip_when_inline"]
   },
 
   // Custom Block Category:  Logic
@@ -68,6 +72,33 @@ Blockly.defineBlocksWithJsonArray([
     nextStatement: null,
     style: "logic_blocks",
     tooltip: "When a value is true, then do something."
-  }
+  },
+  {
+    type: "logic_action_and",
+    message0: "%1 %2 %3",
+    args0: [
+      {
+        type: "input_value",
+        name: "A",
+        check: "ActionBoolean"
+      },
+      {
+        type: "field_dropdown",
+        name: "OP",
+        options: [
+          ["%{BKY_LOGIC_OPERATION_AND}", "AND"]
+        ]
+      },
+      {
+        type: "input_value",
+        name: "B",
+        check: "ActionBoolean"
+      }
+    ],
+    output: "Boolean",
+    inputsInline: true,
+    tooltip: "When two actions are simultaneously occuring the statement is true.",
+    style: "logic_blocks"
+  },
 
 ]);
