@@ -26,7 +26,7 @@
             }
         ],
         "solutions" : [ 
-            "if (true) {\nplayer_jump = true;}"
+            "if (true) {\r\n  player_jump = true;}"
         ]
     },
     "0001" : {
@@ -70,7 +70,7 @@
             }
         ],
         "solutions" : [
-
+            "if (true && true) {\ncollect_gem = true;}\n"
         ]
     },
     "1000" : {
@@ -78,7 +78,7 @@
             "logic_when_do",
             "actions_pressed_space",
             "actions_player_jump",
-            "actions_midair_boost"
+            "actions_player_double_jump"
         ],
         "workspace" : [
             {

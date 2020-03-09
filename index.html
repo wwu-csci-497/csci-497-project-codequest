@@ -172,9 +172,10 @@
       typedToolTip.innerHTML = '';
       var typed = new Typed('#typedToolTip', {
         strings: [message],
-        typeSpeed: 35,
+        typeSpeed: 25,
         backSpeed: 0,
-        loop: false
+        loop: false,
+        showCursor: false
       });
     }
 
@@ -184,13 +185,13 @@
       toolTip.style.left = toolTipCharacter.clientWidth + 'px';
       switch(parseInt(id)) {
         case 0000:
-          writeTooltip("We've got to jump over that hole! You as the player can write the code to help me do this by connecting the correct blocks. Click on the block categories then drag and connect the blocks in the workspace so that I can jump whenever you hit the space bar.");
+          writeTooltip("We've got to jump over that hole! ^1000 You as the player can write the code to help me do this by connecting the correct blocks. ^1000 Click the block categories then drag and connect blocks in the workspace so that I can jump whenever you hit the space bar.");
           break;
         case 0001:
-          writeTooltip("Now let's get gem collection working! This code needs to work so that when you take me to the gem over there, I can pick it up. A tip: green action blocks must be paired together in some way...");
+          writeTooltip("Now let's get gem collection working! ^500 This code needs to work so that when you take me to the gem over there, I can pick it up. ^10000 A tip: green action blocks must be paired together in some way...");
           break;
         case 1000:
-          writeTooltip("I think there's more gems around here. To find them all we'll need more powerful jumps. I wonder if we can use the jumping code you wrote in some way here... Maybe add an extra boost to it...");
+          writeTooltip("I think there's more gems around here. ^1000 To find them all we'll need more powerful jumps. ^1000 I wonder if we can use the jumping code you wrote in some way here... ^500 Maybe add an extra boost to it... ^1000 tip: you'll need to use two logical \"when, do\" blocks");
           break;
         case 1001:
           writeTooltip("Use the blocks to make the flame any color you want! One color in particular will help us explore a new part of this old temple.");
