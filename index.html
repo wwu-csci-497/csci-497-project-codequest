@@ -82,7 +82,7 @@
           e.type == Blockly.Events.DELETE) {
         code = Blockly.JavaScript.workspaceToCode(workspace);
       }
-      console.log('code\n', code);
+      console.log(code);
       var tokens = tokenize(code, 0);
       if (tokens != null) {
         var newBlocks = parser(tokens.all());
