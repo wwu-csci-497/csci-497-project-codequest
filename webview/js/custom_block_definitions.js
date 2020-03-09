@@ -46,7 +46,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: "actions_near_gem",
-    message0: "collide with gem",
+    message0: "walk into gem",
     output: "ActionBoolean",
     colour: "120",
     tooltip: "Player is within interactable area for gem.",
@@ -187,6 +187,50 @@ Blockly.defineBlocksWithJsonArray([
     }],
     colour: "25",
     tooltip: "The flame."
+  },
+  {
+    type: "objects_lever1",
+    message0: "Top Left Lever %1",
+    args0: [{
+      type: "input_value",
+      "name": "ORIENTATION",
+      check: "AttributeString"
+    }],
+    colour: "25",
+    tooltip: "Lever one."
+  },
+  {
+    type: "objects_lever2",
+    message0: "Bottom Left Lever %1",
+    args0: [{
+      type: "input_value",
+      "name": "ORIENTATION",
+      check: "AttributeString"
+    }],
+    colour: "25",
+    tooltip: "Lever two."
+  },
+  {
+    type: "objects_lever3",
+    message0: "Top Right Lever %1",
+    args0: [{
+      type: "input_value",
+      "name": "ORIENTATION",
+      check: "AttributeString"
+    }],
+    colour: "25",
+    tooltip: "Lever three."
+  },
+  {
+    type: "objects_lever4",
+    message0: "Bottom Right Lever %1",
+    args0: [{
+      type: "input_value",
+      "name": "ORIENTATION",
+      check: "AttributeString"
+    }],
+    colour: "25",
+    tooltip: "Lever four."
   },
   {
     type: "objects_pedestal1",
