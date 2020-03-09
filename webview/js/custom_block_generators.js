@@ -1,16 +1,16 @@
 var genDict = {
     // Actions
-    actions_pressed_e: "key_pressed == e",
-    actions_pressed_space: "key_pressed == spacebar",
-    actions_near_gem: "near_gem == true",
-    actions_space_available: "space available == true",
-    actions_player_jump: "player_jump();\n",
-    actions_player_double_jump: "player_double_jump = true;\n", 
-    actions_collect_gem: "collect_gem = true;\n",
     actions_move_left: "move_left_count = ",
     actions_move_right: "move_right_count = ",
     actions_move_down: "move_down_count = ",
     actions_move_up: "move_up_count = ",
+    actions_pressed_e: ["true", Blockly.JavaScript.ORDER_ATOMIC],
+    actions_pressed_space: ["true", Blockly.JavaScript.ORDER_ATOMIC],
+    actions_near_gem: ["true", Blockly.JavaScript.ORDER_ATOMIC],
+    actions_space_available: ["true", Blockly.JavaScript.ORDER_ATOMIC],
+    actions_player_jump: "player_jump = true;",
+    actions_player_double_jump: "player_double_jump = true;", 
+    actions_collect_gem: "collect_gem = true;",
 
     // Attributes
     attributes_color: Blockly.JavaScript.attributes_color,
@@ -34,7 +34,21 @@ var genDict = {
     objects_gem_gold: "gold gem",
     objects_gem_green: "green gem",
     objects_gem_white: "white gem"
-}
+};
+
+var genDict2 = {
+    "player_double_jump=true;": "actions_player_double_jump",
+    "player_jump=true;": "actions_player_jump",
+    "collect_gem=true;": "actions_collect_gem",
+    "if": "logic_when_do",
+    "false&&false": "logic_action_and",
+    "flame_colour=": "objects_flame",
+    "true": "something_good",
+    "false": "something_bad",
+    "true&&false": "something_better",
+    "false&&true": "something_better",
+    "true&&true": "something_good"
+};
 
 // Generator Category:  Actions
 Blockly.JavaScript.actions_pressed_e = function(a) {

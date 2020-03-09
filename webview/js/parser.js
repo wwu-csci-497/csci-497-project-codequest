@@ -308,47 +308,70 @@ function tokenize(input, tabWidth) {
 
 }
 
-var parserStr = '';
-var parserLast = [];
-var parserCur = [];
-function parser(T, state, i) {
-    if (state == undefined)
-        state = 0;
-    if (i == undefined) {
-        parserStr = '';
-        parserCur = [];
-        i = 0;
-    }
-    if (i == T.length-1)
-        return;
+var case0tokens = [
+    'break',
+    'case', 'catch', 'const', 'continue',
+    'debugger', 'default', 'delete', 'do', 'enum',
+    'finally', 'for', 'function', 'in', 'instanceof',
+    'new',
+    'switch',
+    'this', 'throw', 'try', 'typeof',
+    'while', 'with',
+    '(', '{', '\\n', '}', ')'
+];
 
+var case1tokens = [
+    '(', '{', ')', '}', '\\n'
+];
+
+var lastArr = [];
+function parser(T) {
+    curArr = [];
+    parserStates(T, 0, 0, curArr);
+    var diff = findArrDiff(curArr, lastArr);
+    newBlocks = [];
+    diff.forEach(element => {
+        if (genDict2[element] != null)
+            newBlocks.push(genDict2[element]);
+    });
+    lastArr = [...curArr];
+    console.log('new tokens:', diff);
+    return newBlocks;
+}
+
+function parserStates(T, state, i, a) {
+    if (i >= T.length-1)
+        return;
     var token = T[i];
     switch (state) {
         case 0:
-            while (token.type == 'KEYWORD' || token.value == '(' || token.value == '{' || token.value == '\n') {
-                console.log('0: token.value', token.value);
+            while (case0tokens.indexOf(token.value) >= 0) {
                 if (i == T.length-1)
                     return;
-                i+=1;
-                token = T[i];
+                token = T[++i];
             }
             if (token.value == ')' || token.value == '}')
-                parser(T, 0, i+1);
+                parserStates(T, 0, ++i, a);
         case 1:
-            parserStr = '';
-            while (token.value != ')' && token.value != '}' && token.value != '\n') {
-                console.log('1: token.value', token.value);
-                if (parserStr.length > 0)
-                    parserStr += ' ';
-                parserStr += token.value
+            var s = '';
+            while (case1tokens.indexOf(token.value) < 0) {
+                s += token.value
                 if (i == T.length-1)
                     return;
-                i+=1;
-                token = T[i];
+                token = T[++i];
             }
-            parserCur.push(parserStr);
-            parser(T, 0, i+1);
+            a.push(s);
+            parserStates(T, 0, ++i, a);
         default:
             break;
     }
+}
+
+function findArrDiff(curArr, lastArr) {
+    var newTokens = [];
+    curArr.forEach(element => {
+        if (lastArr.indexOf(element) < 0)
+            newTokens.push(element);
+    });
+    return newTokens;
 }

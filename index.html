@@ -84,9 +84,8 @@
       console.log('code\n', code);
       var tokens = tokenize(code, 0);
       if (tokens != null) {
-        console.log('tokens\n', tokens.all());
-        parser(tokens.all(), 0);
-        console.log('parserCur', parserCur);
+        var newBlocks = parser(tokens.all());
+        console.log('newBlocks', newBlocks);
       }
     }
 
@@ -195,6 +194,7 @@
 
     // Sets and loads the problem ID, then shows Blockly
     function setId(id) {
+      lastArr = [];
       currentProblem = id.toString().padStart(4, '0');
       createBlocks(blockList[currentProblem]);
       toolTipGenerator(id);
