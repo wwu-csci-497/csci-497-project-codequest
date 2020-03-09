@@ -23,6 +23,7 @@ Blockly.defineBlocksWithJsonArray([
     message0: "character jump",
     previousStatement: null,
     nextStatement: null,
+    check: "Logic",
     colour: "0",
     tooltip: "Player jumps.",
     extensions: ["parent_tooltip_when_inline"]

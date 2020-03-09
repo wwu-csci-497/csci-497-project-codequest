@@ -56,7 +56,7 @@ function testAnswer(curProb, code) {
 }
 
 function strCompare(s1, s2) {
-  if (s1 == null || s1 == null) {
+  if (s1 == null || s2 == null) {
     console.error('strCompare()', 'One of the two strings are null');
     return false
   }
