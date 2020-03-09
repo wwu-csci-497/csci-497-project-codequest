@@ -107,7 +107,7 @@
             }
         ],
         "solutions" : [
-            "if (true) {\n  player_jump = true;}\n"
+            "if (true) {\n  player_jump = true;if (true) {\n  player_double_jump = true;}\n}\n"
         ]
     },
     "1001" : {
