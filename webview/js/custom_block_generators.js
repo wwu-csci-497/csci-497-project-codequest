@@ -14,6 +14,8 @@ var genDict = {
 
     // Attributes
     attributes_color: Blockly.JavaScript.attributes_color,
+    attributes_up: "up",
+    attributes_down: "down",
 
     // Logic
     logic_when_do: Blockly.JavaScript.logic_when_do,
@@ -34,7 +36,10 @@ var genDict = {
     objects_gem_gold: "gold gem",
     objects_gem_green: "green gem",
     objects_gem_white: "white gem",
-    objects_lever4: "bottom right "
+    objects_lever1: "top left",
+    objects_lever2: "bottom left",
+    objects_lever3: "top right",
+    objects_lever4: "bottom right"
 };
 
 var genDict2 = {
@@ -86,6 +91,16 @@ Blockly.JavaScript.actions_move_right = function(a) {
     return genDict["actions_move_right"];
 };
 
+// Generator Cateogry:  Attributes
+Blockly.JavaScript.attributes_color = function(a) {
+    return a.getFieldValue('COLOUR');
+};
+Blockly.JavaScript.attributes_up = function(a) {
+    return genDict['attributes_up'];
+};Blockly.JavaScript.attributes_color = function(a) {
+    return genDict['attributes_down'];
+};
+
 // Generator Category:  Logic
 Blockly.JavaScript.logic_when_do = function(a) {
     var b = 0,
@@ -123,10 +138,6 @@ Blockly.JavaScript.logic_action_and = function(a) {
       return [code,  Blockly.JavaScript.ORDER_LOGICAL_AND];
 };
 
-// Generator Cateogry:  Attributes
-Blockly.JavaScript.attributes_color = function(a) {
-    return a.getFieldValue('COLOUR');
-};
 
 // Generator Category:  Object
 Blockly.JavaScript.objects_flame = function(a) {
@@ -162,4 +173,18 @@ Blockly.JavaScript.objects_gem_green = function(a) {
 Blockly.JavaScript.objects_gem_white = function(a) {
     return genDict["objects_gem_white"];
 }
+Blockly.JavaScript.objects_lever1 = function(a) {
+    return genDict["objects_lever1"];
+}
+Blockly.JavaScript.objects_lever2 = function(a) {
+    return genDict["objects_lever2"];
+}
+
+Blockly.JavaScript.objects_lever3 = function(a) {
+    return genDict["objects_lever3"];
+}
+Blockly.JavaScript.objects_lever4 = function(a) {
+    return genDict["objects_lever4"];
+}
+
 

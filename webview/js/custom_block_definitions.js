@@ -125,8 +125,20 @@ Blockly.defineBlocksWithJsonArray([
         colour: "#DD540D"
       }
     ],
-    color: "65",
+    colour: "65",
     extensions: ["set_flame_colours_extension"]
+  },
+  {
+    type: "attributes_up",
+    message0: "up",
+    output: "AttributeString",
+    colour: "65"
+  },
+  {
+    type: "attributes_down",
+    message0: "down",
+    output: "AttributeString",
+    colour: "65"
   },
 
   // Custom Block Category:  Logic

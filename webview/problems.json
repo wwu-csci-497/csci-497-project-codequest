@@ -158,12 +158,52 @@
         ]
     },
     "1003" : {
-        "toolbox" : {
-            
-        },
-        "workspace" : {
-
-        }
+        "toolbox" : [
+            "objects_lever1",
+            "objects_lever2",
+            "objects_lever3",
+            "objects_lever4",
+            "attributes_up",
+            "attributes_down"
+        ],
+        "workspace" : [
+            {
+                "type" : "objects_lever1",
+                "id" : "1003_objects_lever1",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_lever2",
+                "id" : "1003_objects_lever2",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_lever3",
+                "id" : "1003_objects_lever3",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_lever4",
+                "id" : "1003_objects_lever4",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "attributes_up",
+                "id" : "1003_attributes_up",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "attributes_down",
+                "id" : "1003_attributes_down",
+                "x" : 100,
+                "y" : 100
+            }
+        ]
     },
     "1004" : {
         "toolbox" : [
@@ -181,49 +221,49 @@
         "workspace" : [
             {
                 "type" : "objects_pedestal1",
-                "id" : "1000_objects_pedestal1",
+                "id" : "1004_objects_pedestal1",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_pedestal2",
-                "id" : "1000_objects_pedestal2",
+                "id" : "1004_objects_pedestal2",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_pedestal3",
-                "id" : "1000_objects_pedestal3",
+                "id" : "1004_objects_pedestal3",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_pedestal4",
-                "id" : "1000_objects_pedestal4",
+                "id" : "1004_objects_pedestal4",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_gem_blue",
-                "id" : "1000_objects_gem_blue",
+                "id" : "1004_objects_gem_blue",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_gem_gold",
-                "id" : "1000_objects_gem_gold",
+                "id" : "1004_objects_gem_gold",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_gem_red",
-                "id" : "1000_objects_gem_red",
+                "id" : "1004_objects_gem_red",
                 "x" : 100,
                 "y" : 100
             },
             {
                 "type" : "objects_gem_green",
-                "id" : "1000_objects_gem_green",
+                "id" : "1004_objects_gem_green",
                 "x" : 100,
                 "y" : 100
             }
