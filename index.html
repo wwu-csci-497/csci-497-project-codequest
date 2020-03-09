@@ -169,7 +169,7 @@
       typedToolTip.innerHTML = '';
       var typed = new Typed('#typedToolTip', {
         strings: [message],
-        typeSpeed: 25,
+        typeSpeed: 35,
         backSpeed: 0,
         loop: false
       });
@@ -180,11 +180,26 @@
       toolTipCharacter.style.width = blocklyDiv.children[0].children[0].clientWidth + 'px';
       toolTip.style.left = toolTipCharacter.clientWidth + 'px';
       switch(parseInt(id)) {
-        case 0:
-          writeTooltip("It looks like I need to jump over that hole. You as the player can write the code to help me do this! Drag the blocks into the workspace so that I can jump whenever you hit the space bar.");
+        case 0000:
+          writeTooltip("We've got to jump over that hole! You as the player can write the code to help me do this by connecting the correct blocks. Click on the block categories then drag and connect the blocks in the workspace so that I can jump whenever you hit the space bar.");
           break;
-        case 1:
-          writeTooltip("We need to collect that gem! Code this puzzle so that when you press enter by the gem over there, I can pick it up.");
+        case 0001:
+          writeTooltip("Now let's get gem collection working! This code needs to work so that when you take me to the gem over there, I can pick it up. A tip: green action blocks must be paired together in some way...");
+          break;
+        case 1000:
+          writeTooltip("I think there's more gems around here. To find them all we'll need more powerful jumps. I wonder if we can use the jumping code you wrote in some way here... Maybe add an extra boost to it...");
+          break;
+        case 1001:
+          writeTooltip("Use the blocks to make the flame any color you want! One color in particular will help us explore a new part of this old temple.");
+          break;
+        case 1002:
+          writeTooltip("That little beetle should be able to get the gem we can't reach up there. Write the code to tell him how to move up the wall to grab the gem! You'll have to code these instructions with the right number of moves in the right directions so he doesn't get lost.");
+          break;
+        case 1003:
+          writeTooltip("That old writing on the wall seems to tell us how to shut the water flowing from the waterfalls off. I wonder if turning the water off could help us get out of here... I think I saw something shiny in the pool at the bottom of the falls...");
+          break;
+        case 1004:
+          writeTooltip("It looks like we need a gem on each of these pedestals in the correct place to get that door open. Five gems in total. The puzzle on the wall there should tell us what the correct order is... We just need to use your logic skills to think through the solution...");
           break;
         default:
           writeTooltip("No tooltip for Blockly Puzzle ID: " + id);

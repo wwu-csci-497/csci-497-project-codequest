@@ -46,7 +46,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: "actions_near_gem",
-    message0: "collide with gem",
+    message0: "walk into gem",
     output: "ActionBoolean",
     colour: "120",
     tooltip: "Player is within interactable area for gem.",
