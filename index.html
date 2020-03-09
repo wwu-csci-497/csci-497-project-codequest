@@ -128,7 +128,8 @@
         'method': 'POST',
         'functionName': 'blocklyCancel',
         'problemId': currentProblem,
-        'solved': false
+        'solved': false,
+        'data': JSON.stringify({})
       };
       unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', JSON.stringify(body));
       showUnity();
@@ -136,25 +137,14 @@
 
     // Tests and completes the problem then communicates back to Unity
     function blocklySubmit() {
-      var data = testAnswer(currentProblem);
-      var body;
-      if (data) {
-        body = {
-          'method': 'POST',
-          'functionName': 'blocklySubmit',
-          'problemId': currentProblem,
-          'solved': true,
-          'data': JSON.stringify(data)
-        };
-      }
-      else {
-        body = {
-          'method': 'POST',
-          'functionName': 'blocklySubmit',
-          'problemId': currentProblem,
-          'solved': false
-        };
-      }
+      var data = testAnswer(currentProblem, code);
+      var body = {
+        'method': 'POST',
+        'functionName': 'blocklySubmit',
+        'problemId': currentProblem,
+        'solved': data[0],
+        'data': JSON.stringify(data[1])
+      };
       unityInstance.SendMessage('BlocklyManager', 'BlocklyReturn', JSON.stringify(body));
       showUnity();
     }
