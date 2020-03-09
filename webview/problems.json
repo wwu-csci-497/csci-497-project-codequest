@@ -20,7 +20,7 @@
             },
             {
                 "type" : "logic_when_do",
-                "id" : "0000_logic_when_do",
+                "id" : "0000_when_do",
                 "x" : 100,
                 "y" : 100
             }
@@ -30,7 +30,7 @@
         "toolbox" : [
             "actions_collect_gem",
             "actions_near_gem",
-            "actions_pressed_e",
+            "actions_space_available",
             "logic_when_do",
             "logic_action_and"
         ],
@@ -55,7 +55,7 @@
             },
             {
                 "type" : "logic_when_do",
-                "id" : "0001_logic_when_do",
+                "id" : "0001_when_do",
                 "x" : 100,
                 "y" : 100
             },
@@ -95,7 +95,7 @@
             },
             {
                 "type" : "logic_when_do",
-                "id" : "1000_logic_when_do",
+                "id" : "1000_when_do",
                 "x" : 100,
                 "y" : 100
             }
@@ -120,5 +120,114 @@
                 "y" : 100
             }
         ]
+    },
+    "1002" : {
+        "toolbox" : [
+            "actions_move_right",
+            "actions_move_left",
+            "actions_move_up",
+            "actions_move_down",
+            "math_number"
+        ],
+        "workspace" : [
+            {
+                "type": "actions_move_right",
+                "id": "1002_actions_move_right",
+                "x": 100,
+                "y": 100
+            },
+            {
+                "type": "actions_move_left",
+                "id": "1002_actions_move_left",
+                "x": 100,
+                "y": 100
+            },
+            {
+                "type": "actions_move_up",
+                "id": "1002_actions_move_up",
+                "x": 100,
+                "y": 100
+            },
+            {
+                "type": "actions_move_down",
+                "id": "1002_actions_move_down",
+                "x": 100,
+                "y": 100
+            }
+            
+        ]
+    },
+    "1003" : {
+        "toolbox" : {
+            
+        },
+        "workspace" : {
+
+        }
+    },
+    "1004" : {
+        "toolbox" : [
+            "objects_pedestal1",
+            "objects_pedestal2",
+            "objects_pedestal3",
+            "objects_pedestal4",
+            "objects_pedestal5",
+            "objects_gem_blue",
+            "objects_gem_gold",
+            "objects_gem_red",
+            "objects_gem_green",
+            "objects_gem_white"
+        ],
+        "workspace" : [
+            {
+                "type" : "objects_pedestal1",
+                "id" : "1000_objects_pedestal1",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_pedestal2",
+                "id" : "1000_objects_pedestal2",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_pedestal3",
+                "id" : "1000_objects_pedestal3",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_pedestal4",
+                "id" : "1000_objects_pedestal4",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_gem_blue",
+                "id" : "1000_objects_gem_blue",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_gem_gold",
+                "id" : "1000_objects_gem_gold",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_gem_red",
+                "id" : "1000_objects_gem_red",
+                "x" : 100,
+                "y" : 100
+            },
+            {
+                "type" : "objects_gem_green",
+                "id" : "1000_objects_gem_green",
+                "x" : 100,
+                "y" : 100
+            }
+        ]
     }
+
 }

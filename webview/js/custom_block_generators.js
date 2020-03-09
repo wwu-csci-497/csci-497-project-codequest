@@ -1,11 +1,16 @@
 var genDict = {
     // Actions
-    actions_pressed_e: ["true", Blockly.JavaScript.ORDER_ATOMIC],
-    actions_pressed_space: ["true", Blockly.JavaScript.ORDER_ATOMIC],
-    actions_near_gem: ["true", Blockly.JavaScript.ORDER_ATOMIC],
-    actions_player_jump: "player_jump = true;\n",
+    actions_pressed_e: "key_pressed == e",
+    actions_pressed_space: "key_pressed == spacebar",
+    actions_near_gem: "near_gem == true",
+    actions_space_available: "space available == true",
+    actions_player_jump: "player_jump();\n",
     actions_player_double_jump: "player_double_jump = true;\n", 
     actions_collect_gem: "collect_gem = true;\n",
+    actions_move_left: "move_left_count = ",
+    actions_move_right: "move_right_count = ",
+    actions_move_down: "move_down_count = ",
+    actions_move_up: "move_up_count = ",
 
     // Attributes
     attributes_color: Blockly.JavaScript.attributes_color,
@@ -18,9 +23,18 @@ var genDict = {
     colour_flame: Blockly.JavaScript.colour_flame,
 
     // Object
-    objects_flame: "flame_colour = "
+    objects_flame: "flame_colour = ",
+    objects_pedestal1: "1 =",
+    objects_pedestal2: "2 =",
+    objects_pedestal3: "3 =",
+    objects_pedestal4: "4 =",
+    objects_pedestal5: "5 =",
+    objects_gem_blue: "blue gem",
+    objects_gem_red: "red gem",
+    objects_gem_gold: "gold gem",
+    objects_gem_green: "green gem",
+    objects_gem_white: "white gem"
 }
-
 
 // Generator Category:  Actions
 Blockly.JavaScript.actions_pressed_e = function(a) {
@@ -32,6 +46,9 @@ Blockly.JavaScript.actions_pressed_space = function(a) {
 Blockly.JavaScript.actions_near_gem = function(a) {
     return genDict["actions_near_gem"];
 };
+Blockly.JavaScript.actions_space_available = function(a) {
+    return genDict["actions_space_available"];
+};
 Blockly.JavaScript.actions_player_jump = function(a) {
     return genDict["actions_player_jump"];
 };
@@ -40,6 +57,18 @@ Blockly.JavaScript.actions_collect_gem = function(a) {
 };
 Blockly.JavaScript.actions_player_double_jump = function(a) {
     return genDict["actions_player_double_jump"];
+};
+Blockly.JavaScript.actions_move_down = function(a) {
+    return genDict["actions_move_down"];
+};
+Blockly.JavaScript.actions_move_up = function(a) {
+    return genDict["actions_move_up"];
+};
+Blockly.JavaScript.actions_move_left = function(a) {
+    return genDict["actions_move_left"];
+};
+Blockly.JavaScript.actions_move_right = function(a) {
+    return genDict["actions_move_right"];
 };
 
 // Generator Category:  Logic
@@ -58,7 +87,6 @@ Blockly.JavaScript.logic_when_do = function(a) {
     if (a.getInput("ELSE") || Blockly.JavaScript.STATEMENT_SUFFIX) e = Blockly.JavaScript.statementToCode(a, "ELSE"), Blockly.JavaScript.STATEMENT_SUFFIX && (e = Blockly.JavaScript.prefixLines(Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_SUFFIX, a), Blockly.JavaScript.INDENT) + e), c += " else {\n" + e + "}";
     return c + "\n";
 };
-
 Blockly.JavaScript.logic_action_and = function(a) {
         
     var argument0 = Blockly.JavaScript.valueToCode(a, "A", Blockly.JavaScript.ORDER_LOGICAL_AND);
@@ -89,3 +117,34 @@ Blockly.JavaScript.attributes_color = function(a) {
 Blockly.JavaScript.objects_flame = function(a) {
     return genDict["objects_flame"];
 }
+Blockly.JavaScript.objects_pedestal1 = function(a) {
+    return genDict["objects_pedestal1"];
+}
+Blockly.JavaScript.objects_pedestal2 = function(a) {
+    return genDict["objects_pedestal2"];
+}
+Blockly.JavaScript.objects_pedestal3 = function(a) {
+    return genDict["objects_pedestal3"];
+}
+Blockly.JavaScript.objects_pedestal4 = function(a) {
+    return genDict["objects_pedestal4"];
+}
+Blockly.JavaScript.objects_pedestal5 = function(a) {
+    return genDict["objects_pedestal5"];
+}
+Blockly.JavaScript.objects_gem_blue = function(a) {
+    return genDict["objects_gem_blue"];
+}
+Blockly.JavaScript.objects_gem_gold = function(a) {
+    return genDict["objects_gem_gold"];
+}
+Blockly.JavaScript.objects_gem_red = function(a) {
+    return genDict["objects_gem_red"];
+}
+Blockly.JavaScript.objects_gem_green = function(a) {
+    return genDict["objects_gem_green"];
+}
+Blockly.JavaScript.objects_gem_white = function(a) {
+    return genDict["objects_gem_white"];
+}
+
