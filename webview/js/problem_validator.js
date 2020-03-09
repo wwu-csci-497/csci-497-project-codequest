@@ -2,53 +2,43 @@ function testAnswer(curProb, code) {
   // return [true, {}];
   switch(parseInt(curProb)) {
     case 0000:
-      for (var i = 0; i < blockList[curProb]['solutions'].length; i++) {
-        if (strCompare(blockList[curProb]['solutions'][i], code)) {
-          console.log('element<->code is true');
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {}];
-        }
-      }
-      console.log('element<->code is false');
       return [false, {}];
     case 0001:
-      blockList[curProb]['solutions'].forEach(element => {
-        if (element == code)
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {}];
-      });
       return [false, {}];
     case 1000:
-      blockList[curProb]['solutions'].forEach(element => {
-        if (element == code)
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {}];
-      });
       return [false, {}];
     case 1001:
-      blockList[curProb]['solutions'].forEach(element => {
-        if (element == code)
-          return [true, {
-            color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
-          }];
-      });
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
+        return [true, {
+          color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
+        }];
       return [false, {
         color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
       }];        
     case 1002:
-      blockList[curProb]['solutions'].forEach(element => {
-        if (element == code)
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {}];
-      });
       return [false, {}];
     case 1003:
-      blockList[curProb]['solutions'].forEach(element => {
-        if (element == code)
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {}];
-      });
       return [false, {}];
     case 1004:
-      blockList[curProb]['solutions'].forEach(element => {
-        if (element == code)
+      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
+        if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {}];
-      });
       return [false, {}];
     default:
       return [false, {}];
