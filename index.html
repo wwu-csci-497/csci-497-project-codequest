@@ -138,6 +138,7 @@
     // Tests and completes the problem then communicates back to Unity
     function blocklySubmit() {
       var data = testAnswer(currentProblem, code);
+      console.log('data', data);
       var body = {
         'method': 'POST',
         'functionName': 'blocklySubmit',
@@ -160,6 +161,8 @@
         for (var i in categories)
           categories[i]['dom'] = undefined;
       }
+      buttonCancel.blur();
+      buttonSubmit.blur();
     }
 
     // Swaps Blockly to front
