@@ -26,7 +26,7 @@
             }
         ],
         "solutions" : [ 
-            "if (true) {\nplayer_jump = true;}\n"
+            "if (true) {\n  player_jump = true;}\n"
         ]
     },
     "0001" : {
