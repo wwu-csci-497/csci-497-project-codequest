@@ -33,7 +33,8 @@ var genDict = {
     objects_gem_red: "red gem",
     objects_gem_gold: "gold gem",
     objects_gem_green: "green gem",
-    objects_gem_white: "white gem"
+    objects_gem_white: "white gem",
+    objects_lever4: "bottom right "
 };
 
 var genDict2 = {
