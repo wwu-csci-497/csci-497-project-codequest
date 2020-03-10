@@ -19,9 +19,14 @@ function testAnswer(curProb, code) {
     case 1001:
       for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
         if (strCompare(blockList[curProb]['solutions'][i], code))
-        return [true, {
-          color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
-        }];
+          return [true, {
+            color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
+          }];
+      console.log('hello', code.substr((code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, e), 7))
+      if (code.substr((code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 15), 7).length == 7)
+        return [false, {
+          color: '#DD540D'
+        }]; 
       return [false, {
         color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
       }];        
