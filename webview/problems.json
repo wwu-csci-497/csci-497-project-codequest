@@ -31,13 +31,19 @@
     },
     "0001" : {
         "toolbox" : [
+            "logic_when_do",
+            "logic_action_and",
             "actions_collect_gem",
             "actions_near_gem",
-            "actions_space_available",
-            "logic_when_do",
-            "logic_action_and"
+            "actions_space_available"
         ],
         "workspace" : [
+            {
+                "type" : "logic_action_and",
+                "id" : "0001_logic_action_and",
+                "x" : 100,
+                "y" : 100
+            },
             {
                 "type" : "actions_collect_gem",
                 "id" : "0001_actions_collect_gem",
@@ -61,12 +67,6 @@
                 "id" : "0001_when_do",
                 "x" : 100,
                 "y" : 100
-            },
-            {
-                "type" : "logic_action_and",
-                "id" : "0001_logic_action_and",
-                "x" : 100,
-                "y" : 100
             }
         ],
         "solutions" : [
@@ -76,8 +76,9 @@
     "1000" : {
         "toolbox" : [
             "logic_when_do",
+            "logic_action_and",
             "actions_pressed_space",
-            "actions_player_jump",
+            "actions_is_jumping",
             "actions_player_double_jump"
         ],
         "workspace" : [
@@ -88,8 +89,8 @@
                 "y" : 100
             },
             {
-                "type" : "actions_player_jump",
-                "id" : "1000_actions_player_jump",
+                "type" : "actions_is_jumping",
+                "id" : "1000_actions_is_jumping",
                 "x" : 100,
                 "y" : 100
             },
@@ -107,7 +108,7 @@
             }
         ],
         "solutions" : [
-            "if (true) {\n  player_jump = true;if (true) {\n  player_double_jump = true;}\n}\n"
+            "if (true && true) {\n  player_double_jump = true;}\n"
         ]
     },
     "1001" : {
@@ -130,16 +131,18 @@
             }
         ],
         "solutions" : [
-
+            ""
         ]
     },
     "1002" : {
         "toolbox" : [
             "actions_move_right",
             "actions_move_left",
-            "actions_move_up",
-            "actions_move_down",
-            "math_number"
+            "math_number",
+            "actions_in_green",
+            "actions_in_blue",
+            "actions_in_purple",
+            "logic_when_do"
         ],
         "workspace" : [
             {
@@ -155,28 +158,33 @@
                 "y": 100
             },
             {
-                "type": "actions_move_up",
-                "id": "1002_actions_move_up",
+                "type": "actions_in_green",
+                "id": "1002_actions_in_green",
                 "x": 100,
                 "y": 100
             },
             {
-                "type": "actions_move_down",
-                "id": "1002_actions_move_down",
+                "type": "actions_in_blue",
+                "id": "1002_actions_in_blue",
+                "x": 100,
+                "y": 100
+            },
+            {
+                "type": "actions_in_purple",
+                "id": "1002_actions_in_purple",
                 "x": 100,
                 "y": 100
             }
             
         ],
         "solutions" : [
-
+            ""
         ]
     },
     "1003" : {
         "toolbox" : [
             "objects_lever1",
             "objects_lever2",
-            "objects_lever3",
             "objects_lever4",
             "attributes_up",
             "attributes_down"
@@ -191,12 +199,6 @@
             {
                 "type" : "objects_lever2",
                 "id" : "1003_objects_lever2",
-                "x" : 100,
-                "y" : 100
-            },
-            {
-                "type" : "objects_lever3",
-                "id" : "1003_objects_lever3",
                 "x" : 100,
                 "y" : 100
             },
@@ -220,7 +222,7 @@
             }
         ],
         "solutions" : [
-
+            "#37FF22"
         ]
     },
     "1004" : {

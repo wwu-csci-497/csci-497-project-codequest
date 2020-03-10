@@ -38,6 +38,14 @@ Blockly.defineBlocksWithJsonArray([
     extensions: ["parent_tooltip_when_inline"]
   },
   {
+    type: "actions_is_jumping",
+    message0: "character is jumping",
+    output: "ActionBoolean",
+    colour: "120",
+    tooltip: "Play has made character jump.",
+    extensions: ["parent_tooltip_when_inline"]
+  },
+  {
     type: "actions_collect_gem",
     message0: "collect gem",
     previousStatement: null,
@@ -72,6 +80,7 @@ Blockly.defineBlocksWithJsonArray([
   {
     type: "actions_move_left",
     message0: "Move Left %1",
+    previousStatement: null,
     args0: [
       {
         type: "input_value",
@@ -83,6 +92,7 @@ Blockly.defineBlocksWithJsonArray([
   {
     type: "actions_move_right",
     message0: "Move Right %1",
+    previousStatement: null,
     args0: [
       {
         type: "input_value",
@@ -112,6 +122,30 @@ Blockly.defineBlocksWithJsonArray([
       }
     ],
     colour: "0"
+  },
+  {
+    type: "actions_in_green",
+    message0: "beetle in green zone",
+    output: "Boolean",
+    colour: "0",
+    tooltip: "The beetle is in the green zone.",
+    extensions: ["parent_tooltip_when_inline"]
+  },
+  {
+    type: "actions_in_blue",
+    message0: "beetle in blue zone",
+    output: "Boolean",
+    colour: "0",
+    tooltip: "The beetle is in the blue zone.",
+    extensions: ["parent_tooltip_when_inline"]
+  },
+  {
+    type: "actions_in_purple",
+    message0: "beetle in purple zone",
+    output: "Boolean",
+    colour: "0",
+    tooltip: "The beetle is in the purple zone.",
+    extensions: ["parent_tooltip_when_inline"]
   },
 
   // Custom Block Category:  Attributes
@@ -156,8 +190,6 @@ Blockly.defineBlocksWithJsonArray([
         type: "input_statement",
         name: "DO0"
     }],
-    previousStatement: null,
-    nextStatement: null,
     style: "logic_blocks",
     tooltip: "When a value is true, then do something."
   },
@@ -167,8 +199,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "input_value",
-        name: "A",
-        check: "ActionBoolean"
+        name: "A"
       },
       {
         type: "field_dropdown",
@@ -179,8 +210,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "input_value",
-        name: "B",
-        check: "ActionBoolean"
+        name: "B"
       }
     ],
     output: "Boolean",
@@ -203,7 +233,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: "objects_lever1",
-    message0: "Top Left Lever %1",
+    message0: "Lever \#1 %1",
     args0: [{
       type: "input_value",
       "name": "ORIENTATION",
@@ -214,7 +244,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: "objects_lever2",
-    message0: "Bottom Left Lever %1",
+    message0: "Lever \#2 %1",
     args0: [{
       type: "input_value",
       "name": "ORIENTATION",
@@ -224,19 +254,8 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: "Lever two."
   },
   {
-    type: "objects_lever3",
-    message0: "Top Right Lever %1",
-    args0: [{
-      type: "input_value",
-      "name": "ORIENTATION",
-      check: "AttributeString"
-    }],
-    colour: "25",
-    tooltip: "Lever three."
-  },
-  {
     type: "objects_lever4",
-    message0: "Bottom Right Lever %1",
+    message0: "Lever \#4 %1",
     args0: [{
       type: "input_value",
       "name": "ORIENTATION",
@@ -323,8 +342,8 @@ Blockly.defineBlocksWithJsonArray([
     colour: "65"
   },
   {
-    type: "objects_gem_red",
-    message0: "red gem",
+    type: "objects_gem_purple",
+    message0: "purple gem",
     output: "AttributeString",
     colour: "65"
   },
@@ -335,8 +354,8 @@ Blockly.defineBlocksWithJsonArray([
     colour: "65"
   },
   {
-    type: "objects_gem_white",
-    message0: "white gem",
+    type: "objects_gem_orange",
+    message0: "orange gem",
     output: "AttributeString",
     colour: "65"
   }

@@ -11,6 +11,10 @@ var genDict = {
     actions_player_jump: "player_jump = true;",
     actions_player_double_jump: "player_double_jump = true;", 
     actions_collect_gem: "collect_gem = true;",
+    actions_in_green: "green",
+    actions_in_blue: "blue",
+    actions_in_purple: "purple",
+    actions_is_jumping: ["true", Blockly.JavaScript.ORDER_ATOMIC],
 
     // Attributes
     attributes_color: Blockly.JavaScript.attributes_color,
@@ -32,10 +36,10 @@ var genDict = {
     objects_pedestal4: "4 =",
     objects_pedestal5: "5 =",
     objects_gem_blue: "blue gem",
-    objects_gem_red: "red gem",
+    objects_gem_purple: "purple gem",
     objects_gem_gold: "gold gem",
     objects_gem_green: "green gem",
-    objects_gem_white: "white gem",
+    objects_gem_orange: "orange gem",
     objects_lever1: "top left",
     objects_lever2: "bottom left",
     objects_lever3: "top right",
@@ -90,6 +94,18 @@ Blockly.JavaScript.actions_move_left = function(a) {
 Blockly.JavaScript.actions_move_right = function(a) {
     return genDict["actions_move_right"];
 };
+Blockly.JavaScript.actions_in_green = function(a) {
+    return genDict["actions_in_green"];
+};
+Blockly.JavaScript.actions_in_blue = function(a) {
+    return genDict["actions_in_blue"];
+};
+Blockly.JavaScript.actions_in_purple = function(a) {
+    return genDict["actions_in_purple"];
+};
+Blockly.JavaScript.actions_is_jumping = function(a) {
+    return genDict["actions_is_jumping"];
+};
 
 // Generator Cateogry:  Attributes
 Blockly.JavaScript.attributes_color = function(a) {
@@ -97,7 +113,7 @@ Blockly.JavaScript.attributes_color = function(a) {
 };
 Blockly.JavaScript.attributes_up = function(a) {
     return genDict['attributes_up'];
-};Blockly.JavaScript.attributes_color = function(a) {
+};Blockly.JavaScript.attributes_down = function(a) {
     return genDict['attributes_down'];
 };
 
