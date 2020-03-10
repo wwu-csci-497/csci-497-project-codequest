@@ -109,7 +109,7 @@ Blockly.JavaScript.actions_is_jumping = function(a) {
 
 // Generator Cateogry:  Attributes
 Blockly.JavaScript.attributes_color = function(a) {
-    return a.getFieldValue('COLOUR');
+    return [a.getFieldValue('COLOUR'), Blockly.JavaScript.ORDER_NONE];
 };
 Blockly.JavaScript.attributes_up = function(a) {
     return genDict['attributes_up'];
@@ -157,7 +157,7 @@ Blockly.JavaScript.logic_action_and = function(a) {
 
 // Generator Category:  Object
 Blockly.JavaScript.objects_flame = function(a) {
-    return genDict["objects_flame"];
+    return genDict["objects_flame"] + Blockly.JavaScript.valueToCode(a, "FLAME_COLOUR0", Blockly.JavaScript.ORDER_NONE) + ";\n" || "#DD540D;\n";
 }
 Blockly.JavaScript.objects_pedestal1 = function(a) {
     return genDict["objects_pedestal1"];
