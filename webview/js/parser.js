@@ -257,7 +257,7 @@ function tokenize(input, tabWidth) {
             }
 
         // If we ever hit this... we suck
-        } else {
+        } else if (sub[0] != '\#'){
             throw new Error('Unexpected: ' + sub[0] + ' on :');
         }
 

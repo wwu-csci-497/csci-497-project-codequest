@@ -48,7 +48,7 @@ function strCompare(s1, s2) {
     return false
   }
   if (s1.length != s2.length) {
-    console.error('strCompare()', 'Strings are not the same length.');
+    console.error('strCompare()', 'Strings are not the same length -- s1: ' + s1.length + ' s2: ' + s2.length);
     return false;
   }
   for (var i = 0; i < s1.length; i++) {
