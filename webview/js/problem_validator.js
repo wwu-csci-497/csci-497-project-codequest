@@ -129,40 +129,53 @@ function beetleParse(newcode) {
 function gemsParse(code) {
   var i = 0;
   var c = 0;
-  while (i >= 0) {
-    if (c == 5)
-      break;
-    var color = '';
-    i+=4;
-    while (newcode[i] != ')')
-      color += newcode[i++];
-    i+=6;
-    var dir = '';
-    while (newcode[i] != ' ')
-      dir += newcode[i++];
-    i+=3;
-    var num = '';
-    while (newcode[i] != ';')
-      num += newcode[i++];
-    num = parseInt(num);
-
-    if (dir == 'move_left_count')
-      num*=-1;
-
-    console.log(color, dir, num);
-
-    if (strCompare(color, 'green'))
-      data[0] = num;
-    else if (strCompare(color, 'blue'))
-      data[1] = num;
-    else if (strCompare(color, 'purple'))
-      data[2] = num;
-    else
-      console.error('beetleParse()', 'Not a valid color: ' + color);
-
-    console.log(i);
-    i = newcode.indexOf('if (', i);
-    console.log(i);
+  var str = '';
+  while (c < 5) {
+    switch(code[i]) {
+      case 1:
+        i+=4;
+        if (code.substr(i, 9) != "gold gem\n") {
+          console.log(code.substr(i, 9));
+          return false;
+        }
+        i+=9;
+        break;
+      case 2:
+        i+=4;
+        if (code.substr(i, 11) != "purple gem\n") {
+          console.log(code.substr(i, 11));
+          return false;
+        }
+        i+=11;
+        break;
+      case 3:
+        i+=4;
+        if (code.substr(i, 9) != "blue gem\n") {
+          console.log(code.substr(i, 9));
+          return false;
+        }
+        i+=9;
+        break;
+      case 4:
+        i+=4;
+        if (code.substr(i, 11) != "orange gem\n") {
+          console.log(code.substr(i, 11));
+          return false;
+        }
+        i+=11;
+        break;
+      case 5:
+        i+=4;
+        if (code.substr(i, 10) != "green gem\n") {
+          console.log(code.substr(i, 10));
+          return false;
+        }
+        i+=10;
+        break;
+      default:
+        return false;
+    }
     c++;
   }
+  return true;
 }
