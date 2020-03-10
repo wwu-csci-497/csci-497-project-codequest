@@ -22,7 +22,6 @@ function testAnswer(curProb, code) {
           return [true, {
             color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
           }];
-      console.log('hello', code.substr((code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, e), 7))
       if (code.substr((code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 15), 7).length == 7)
         return [false, {
           color: '#DD540D'

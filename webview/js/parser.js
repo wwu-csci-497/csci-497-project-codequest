@@ -89,7 +89,7 @@ var opRegExp = new RegExp(opMatch),
     intRegExp = /^0[xX][\da-fA-F]+|^0[0-7]*|^\d+/,
     multiCommentRegExp = /^\/\*(.|[\r\n])*?\*\//m,
     commentRegExp = /^\/\/.*/,
-    identRegExp = /^[$_\w]+/,
+    identRegExp = /^[$_\w]+|^[$_#\w]+/,
     wsRegExp = /^[\ \t]+/,
     strRegExp = /^'([^'\\]|\\.)*'|^"([^"\\]|\\.)*"/;
 
@@ -257,8 +257,6 @@ function tokenize(input, tabWidth) {
             }
 
         // If we ever hit this... we suck
-        } else if (sub[0] != '\#'){
-            throw new Error('Unexpected: ' + sub[0] + ' on :');
         }
 
         // Add non-whitespace tokens to stream

@@ -79,14 +79,14 @@
       code = null;
       if (e.type == Blockly.Events.MOVE ||
           e.type == Blockly.Events.CHANGE ||
-          e.type == Blockly.Events.DELETE ||
-          e.type == Blockly.Events.UI) {
+          e.type == Blockly.Events.DELETE) {
         code = Blockly.JavaScript.workspaceToCode(workspace);
       }
       console.log(code);
       if (e.type == Blockly.Events.MOVE) {
         var tokens = tokenize(code, 0);
         if (tokens != null) {
+          console.log('tokens', tokens.all());
           var newBlocks = parser(tokens.all());
           console.log('newBlocks', newBlocks);
         }
