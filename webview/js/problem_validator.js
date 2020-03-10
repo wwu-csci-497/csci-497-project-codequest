@@ -77,26 +77,39 @@ function beetleParse(newcode) {
   var i = newcode.indexOf('if (');
   var c = 0;
   while (i >= 0) {
-    if (c == 5)
+    if (c == 50)
       break;
     var color = '';
     i+=4;
-    while (newcode[i] != ')')
+    if (i > newcode.length-1)
+      return data;
+    while (newcode[i] != ')') {
       color += newcode[i++];
+      if (i > newcode.length-1)
+        return data;
+    }
     i+=6;
+    if (i > newcode.length-1)
+      return data;
     var dir = '';
-    while (newcode[i] != ' ')
+    while (newcode[i] != ' ') {
       dir += newcode[i++];
+      if (i > newcode.length-1)
+        return data;
+    }
     i+=3;
+    if (i > newcode.length-1)
+      return data;
     var num = '';
-    while (newcode[i] != ';')
+    while (newcode[i] != ';') {
       num += newcode[i++];
+      if (i > newcode.length-1)
+         data;
+    }
     num = parseInt(num);
 
     if (dir == 'move_left_count')
       num*=-1;
-
-    console.log(color, dir, num);
 
     if (strCompare(color, 'green'))
       data[0] = num;
@@ -107,9 +120,7 @@ function beetleParse(newcode) {
     else
       console.error('beetleParse()', 'Not a valid color: ' + color);
 
-    console.log(i);
     i = newcode.indexOf('if (', i);
-    console.log(i);
     c++;
   }
   return data;
