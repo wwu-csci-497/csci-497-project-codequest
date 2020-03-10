@@ -1,5 +1,8 @@
+var hexcolor = /^#[A-Fa-f0-9]*/;
+
 function testAnswer(curProb, code) {
-  // return [true, {}];
+  if (code == null)
+    return [false, {}];
   switch(parseInt(curProb)) {
     case 0000:
       for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
@@ -17,18 +20,21 @@ function testAnswer(curProb, code) {
           return [true, {}];
       return [false, {}];
     case 1001:
+      // Checks if it is correct solution and sends the color
       for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
         if (strCompare(blockList[curProb]['solutions'][i], code))
           return [true, {
             color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
           }];
-      if (code.substr((code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 15), 7).length == 7)
+      // Finds the first objects_flame and checks to see if there is a hex code after it, then it will send that color to Unity
+      if (code.substr((code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 15), 7).match(hexcolor))
         return [false, {
-          color: '#DD540D'
-        }]; 
+          color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
+        }];  
+      // If there is no objects_flame or color after an objects_flame, the flame will reset to orange
       return [false, {
-        color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
-      }];        
+        color: '#DD540D'
+      }];       
     case 1002:
       return [true, {'dirs': beetleParse(code)}];
     case 1003:
