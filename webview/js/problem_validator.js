@@ -44,8 +44,19 @@ function testAnswer(curProb, code) {
       return [false, {}];
     case 1004:
       for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
-        if (strCompare(blockList[curProb]['solutions'][i], code))
-          return [true, {}];
+        var s1 = blockList[curProb]['solutions'][i];
+        var s2 = code;
+        if (s1 == null || s2 == null) {
+          console.error('strCompare()', 'One of the two strings are null');
+          return [false, []];
+        }
+        if (s1.length != s2.length) {
+          console.error('strCompare()', 'Strings are not the same length -- s1: ' + s1.length + ' s2: ' + s2.length);
+          return [false, []];
+        }
+
+        if (gemsParse(code))
+          return [true, ["Yellow", "Purple", "Blue", "Orange", "Green"]];
       return [false, {}];
     default:
       return [false, {}];
@@ -55,7 +66,7 @@ function testAnswer(curProb, code) {
 function strCompare(s1, s2) {
   if (s1 == null || s2 == null) {
     console.error('strCompare()', 'One of the two strings are null');
-    return false
+    return false;
   }
   if (s1.length != s2.length) {
     console.error('strCompare()', 'Strings are not the same length -- s1: ' + s1.length + ' s2: ' + s2.length);
@@ -124,4 +135,58 @@ function beetleParse(newcode) {
     c++;
   }
   return data;
+}
+
+function gemsParse(code) {
+  var i = 0;
+  var c = 0;
+  var str = '';
+  while (c < 5) {
+    switch(code[i]) {
+      case 1:
+        i+=4;
+        if (code.substr(i, 9) != "gold gem\n") {
+          console.log(code.substr(i, 9));
+          return false;
+        }
+        i+=9;
+        break;
+      case 2:
+        i+=4;
+        if (code.substr(i, 11) != "purple gem\n") {
+          console.log(code.substr(i, 11));
+          return false;
+        }
+        i+=11;
+        break;
+      case 3:
+        i+=4;
+        if (code.substr(i, 9) != "blue gem\n") {
+          console.log(code.substr(i, 9));
+          return false;
+        }
+        i+=9;
+        break;
+      case 4:
+        i+=4;
+        if (code.substr(i, 11) != "orange gem\n") {
+          console.log(code.substr(i, 11));
+          return false;
+        }
+        i+=11;
+        break;
+      case 5:
+        i+=4;
+        if (code.substr(i, 10) != "green gem\n") {
+          console.log(code.substr(i, 10));
+          return false;
+        }
+        i+=10;
+        break;
+      default:
+        return false;
+    }
+    c++;
+  }
+  return true;
 }
