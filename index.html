@@ -64,6 +64,7 @@
     var blockList = null;
     var workspace = null;
     var code = null;
+    var typed = null;
     var codeShow = false;
     var currentProblem = -1;
 
@@ -79,15 +80,17 @@
       code = null;
       if (e.type == Blockly.Events.MOVE ||
           e.type == Blockly.Events.CHANGE ||
-          e.type == Blockly.Events.DELETE ||
-          e.type == Blockly.Events.UI) {
+          e.type == Blockly.Events.DELETE) {
         code = Blockly.JavaScript.workspaceToCode(workspace);
       }
       console.log(code);
-      var tokens = tokenize(code, 0);
-      if (tokens != null) {
-        var newBlocks = parser(tokens.all());
-        console.log('newBlocks', newBlocks);
+      if (e.type == Blockly.Events.MOVE) {
+        var tokens = tokenize(code, 0);
+        if (tokens != null) {
+          console.log('tokens', tokens.all());
+          var newBlocks = parser(tokens.all());
+          console.log('newBlocks', newBlocks);
+        }
       }
     }
 
@@ -174,7 +177,7 @@
     // Creates tooltip message
     function writeTooltip(message) {
       typedToolTip.innerHTML = '';
-      var typed = new Typed('#typedToolTip', {
+      typed = new Typed('#typedToolTip', {
         strings: [message],
         typeSpeed: 25,
         backSpeed: 0,
@@ -187,6 +190,10 @@
     function toolTipGenerator(id) {
       toolTipCharacter.style.width = blocklyDiv.children[0].children[0].clientWidth + 'px';
       toolTip.style.left = toolTipCharacter.clientWidth + 'px';
+      if (typed != null) {
+        // removes tooltips from trying to output at the same time
+        typed.destroy();
+      }
       switch(parseInt(id)) {
         case 0000:
           writeTooltip("We've got to jump over that hole! ^800 You as the player can write the code to help me do this by connecting the correct blocks. ^800 Click the block categories then drag and connect blocks in the workspace so that I can jump whenever you hit the space bar.");
@@ -195,10 +202,10 @@
           writeTooltip("Now let's get gem collection working! ^500 This code needs to work so that when you take me to the gem over there, I can pick it up. ^10000 A tip: green action blocks must be paired together in some way...");
           break;
         case 1000:
-          writeTooltip("I think there's more gems around here. ^1000 To find them all we'll need more powerful jumps. ^1000 I wonder if we can use the jumping code you wrote in some way here... ^500 Maybe add an extra boost to it... ^1000 \ntip: you'll need to use two logical \"when, do\" blocks");
-          break;
+          typed = writeTooltip("It looks like something shiny is hiding in the pool below the falls. ^1000 Maybe if we shut the water off we'll be able to grab it, ^300 but to get up to the top of the falls we'll need more powerful jumps. ^1000 I wonder if we can use the jumping code you wrote in some way here... ^500 Maybe add an extra boost to it... ^1000 \ntip: you'll need to use two logical \"when, do\" blocks");
+           break;
         case 1001:
-          writeTooltip("Use the blocks to make the flame any color you want! ^5000 One color in particular will help us explore a new part of this old temple.");
+          typed = writeTooltip("Use the blocks to make the flame any color you want! ^5000 One color in particular will help us explore a new part of this old temple.");
           break;
         case 1002:
           writeTooltip("That little beetle should be able to get the gem we can't reach up there. ^1000 Write the code to tell him how to move up the wall to grab the gem! ^1000 You'll have to code these instructions with the correct number of moves in the correct directions so he make it.");

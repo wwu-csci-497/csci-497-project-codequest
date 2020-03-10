@@ -131,7 +131,12 @@
             }
         ],
         "solutions" : [
-            ""
+            "flame_colour = #37FF22;\n",
+            "flame_colour = #DD540D;\n",
+            "flame_colour = #FFFFFF;\n",
+            "flame_colour = #FF0DA9;\n",
+            "flame_colour = #0Df3FF;\n",
+            "flame_colour = #002CAD;\n"
         ]
     },
     "1002" : {
@@ -222,7 +227,7 @@
             }
         ],
         "solutions" : [
-            "#37FF22"
+            ""
         ]
     },
     "1004" : {

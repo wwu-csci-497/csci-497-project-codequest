@@ -30,20 +30,20 @@ var genDict = {
 
     // Object
     objects_flame: "flame_colour = ",
-    objects_pedestal1: "1 =",
-    objects_pedestal2: "2 =",
-    objects_pedestal3: "3 =",
-    objects_pedestal4: "4 =",
-    objects_pedestal5: "5 =",
+    objects_pedestal1: "1 = ",
+    objects_pedestal2: "2 = ",
+    objects_pedestal3: "3 = ",
+    objects_pedestal4: "4 = ",
+    objects_pedestal5: "5 = ",
     objects_gem_blue: "blue gem",
     objects_gem_purple: "purple gem",
     objects_gem_gold: "gold gem",
     objects_gem_green: "green gem",
     objects_gem_orange: "orange gem",
-    objects_lever1: "top left",
-    objects_lever2: "bottom left",
-    objects_lever3: "top right",
-    objects_lever4: "bottom right"
+    objects_lever1: "top left = ",
+    objects_lever2: "bottom left = ",
+    objects_lever3: "top right = ",
+    objects_lever4: "bottom right = "
 };
 
 var genDict2 = {
@@ -109,7 +109,7 @@ Blockly.JavaScript.actions_is_jumping = function(a) {
 
 // Generator Cateogry:  Attributes
 Blockly.JavaScript.attributes_color = function(a) {
-    return a.getFieldValue('COLOUR');
+    return [a.getFieldValue('COLOUR'), Blockly.JavaScript.ORDER_NONE];
 };
 Blockly.JavaScript.attributes_up = function(a) {
     return genDict['attributes_up'];
@@ -157,7 +157,7 @@ Blockly.JavaScript.logic_action_and = function(a) {
 
 // Generator Category:  Object
 Blockly.JavaScript.objects_flame = function(a) {
-    return genDict["objects_flame"];
+    return genDict["objects_flame"] + Blockly.JavaScript.valueToCode(a, "FLAME_COLOUR0", Blockly.JavaScript.ORDER_NONE) + ";\n" || "#DD540D;\n";
 }
 Blockly.JavaScript.objects_pedestal1 = function(a) {
     return genDict["objects_pedestal1"];

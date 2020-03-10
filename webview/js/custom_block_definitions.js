@@ -22,7 +22,6 @@ Blockly.defineBlocksWithJsonArray([
     type: "actions_player_jump",
     message0: "character jump",
     previousStatement: null,
-    nextStatement: null,
     check: "Logic",
     colour: "0",
     tooltip: "Player jumps.",
@@ -32,7 +31,6 @@ Blockly.defineBlocksWithJsonArray([
     type: "actions_player_double_jump",
     message0: "mid-air boost",
     previousStatement: null,
-    nextStatement: null,
     colour: "0",
     tooltip: "Player performs double jump.",
     extensions: ["parent_tooltip_when_inline"]

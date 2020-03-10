@@ -74,9 +74,6 @@ button:hover {
   overflow: auto;
   position: relative;
 }
-#instructions {
-
-}
 #generatedCode {
   border-top: 1px solid black;
   width: 100%;
