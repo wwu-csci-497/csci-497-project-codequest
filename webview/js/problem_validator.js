@@ -42,6 +42,20 @@ function testAnswer(curProb, code) {
   }
 }
 
+function getValue(code, block, offset) {
+  if (block[block.length-1] != '=')
+    return false;
+  if (offset == undefined)
+    offset = 0;
+  var value = '';
+  var end = code.indexOf(genDict[object], offset) + genDict[object].length;
+  while (code[end] == ' ')
+    end++;
+  while (code[end] != ';')
+    value += code[end];
+  return value;
+}
+
 function strCompare(s1, s2) {
   if (s1 == null || s2 == null) {
     console.error('strCompare()', 'One of the two strings are null');
