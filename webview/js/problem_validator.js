@@ -26,10 +26,7 @@ function testAnswer(curProb, code) {
         color: code.substr(code.indexOf(genDict['objects_flame']) + genDict['objects_flame'].length, 7)
       }];        
     case 1002:
-      for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
-        if (strCompare(blockList[curProb]['solutions'][i], code))
-          return [true, {}];
-      return [false, {}];
+      return [true, {'dirs': beetleParse(code)}];
     case 1003:
       for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
         if (strCompare(blockList[curProb]['solutions'][i], code))
@@ -62,4 +59,48 @@ function strCompare(s1, s2) {
   }
   console.error('strCompare()', 'true')
   return true;
+}
+
+function beetleParse(newcode) {
+  console.log('code', newcode);
+  var data = [0, 0, 0];
+  var i = newcode.indexOf('if (');
+  var c = 0;
+  while (i >= 0) {
+    if (c == 5)
+      break;
+    var color = '';
+    i+=4;
+    while (newcode[i] != ')')
+      color += newcode[i++];
+    i+=6;
+    var dir = '';
+    while (newcode[i] != ' ')
+      dir += newcode[i++];
+    i+=3;
+    var num = '';
+    while (newcode[i] != ';')
+      num += newcode[i++];
+    num = parseInt(num);
+
+    if (dir == 'move_left_count')
+      num*=-1;
+
+    console.log(color, dir, num);
+
+    if (strCompare(color, 'green'))
+      data[0] = num;
+    else if (strCompare(color, 'blue'))
+      data[1] = num;
+    else if (strCompare(color, 'purple'))
+      data[2] = num;
+    else
+      console.error('beetleParse()', 'Not a valid color: ' + color);
+
+    console.log(i);
+    i = newcode.indexOf('if (', i);
+    console.log(i);
+    c++;
+  }
+  return data;
 }
