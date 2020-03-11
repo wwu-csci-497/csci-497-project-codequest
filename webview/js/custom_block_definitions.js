@@ -367,7 +367,7 @@ Blockly.Extensions.register('set_flame_colours_extension',
   function() {
     var field = this.getField("COLOUR");
     field.setColours(
-      ['#DD540D', '#FFFFFF', '#37FF22',
+      ['#DD540D', '#FFFFFF', '#37ff22',
         '#FF0DA9', '#0Df3FF', '#002CAD'],
       ['Orange', 'White', 'Green',
         'Pink', 'Cyan', 'Blue']);

@@ -239,9 +239,9 @@
             "objects_pedestal5",
             "objects_gem_blue",
             "objects_gem_gold",
-            "objects_gem_red",
+            "objects_gem_purple",
             "objects_gem_green",
-            "objects_gem_white"
+            "objects_gem_orange"
         ],
         "workspace" : [
             {
@@ -269,6 +269,12 @@
                 "y" : 100
             },
             {
+                "type" : "objects_pedestal5",
+                "id" : "1004_objects_pedestal5",
+                "x" : 100,
+                "y" : 100
+            },
+            {
                 "type" : "objects_gem_blue",
                 "id" : "1004_objects_gem_blue",
                 "x" : 100,
@@ -281,8 +287,8 @@
                 "y" : 100
             },
             {
-                "type" : "objects_gem_red",
-                "id" : "1004_objects_gem_red",
+                "type" : "objects_gem_purple",
+                "id" : "1004_objects_gem_purple",
                 "x" : 100,
                 "y" : 100
             },
@@ -291,10 +297,16 @@
                 "id" : "1004_objects_gem_green",
                 "x" : 100,
                 "y" : 100
+            },
+            {
+                "type" : "objects_gem_orange",
+                "id" : "1004_objects_gem_orange",
+                "x" : 100,
+                "y" : 100
             }
         ],
         "solutions" : [
-
+            "1 = gold gem\n2 = purple gem\n3 = blue gem\n4 = orange gem\n5 = green gem\n"
         ]
     }
 

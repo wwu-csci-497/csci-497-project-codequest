@@ -44,19 +44,19 @@ function testAnswer(curProb, code) {
       return [false, {}];
     case 1004:
       for (var i = 0; i < blockList[curProb]['solutions'].length; i++)
-        var s1 = blockList[curProb]['solutions'][i];
-        var s2 = code;
-        if (s1 == null || s2 == null) {
-          console.error('strCompare()', 'One of the two strings are null');
-          return [false, []];
-        }
-        if (s1.length != s2.length) {
-          console.error('strCompare()', 'Strings are not the same length -- s1: ' + s1.length + ' s2: ' + s2.length);
-          return [false, []];
-        }
+        // var s1 = blockList[curProb]['solutions'][i];
+        // var s2 = code;
+        // if (s1 == null || s2 == null) {
+        //   console.error('strCompare()', 'One of the two strings are null');
+        //   return [false, []];
+        // }
+        // if (s1.length != s2.length) {
+        //   console.error('strCompare()', 'Strings are not the same length -- s1: ' + s1.length + ' s2: ' + s2.length);
+        //   return [false, []];
+        // }
 
-        if (gemsParse(code))
-          return [true, ["Yellow", "Purple", "Blue", "Orange", "Green"]];
+        // if (gemsParse(code))
+        return [true, {'order': ["Yellow", "Purple", "Blue", "Orange", "Green"]}];
       return [false, {}];
     default:
       return [false, {}];
@@ -73,7 +73,7 @@ function strCompare(s1, s2) {
     return false;
   }
   for (var i = 0; i < s1.length; i++) {
-    if (s1[i] != s2[i]) {
+    if (s1[i].toUpperCase() != s2[i].toUpperCase()) {
       console.error('strCompare()', 's1[' + i + ']: ' + s1[i] + '\ns2[' + i + ']: ' + s2[i])
       return false;
     }
@@ -144,6 +144,8 @@ function gemsParse(code) {
   while (c < 5) {
     switch(code[i]) {
       case 1:
+        
+        console.log(code[i]);
         i+=4;
         if (code.substr(i, 9) != "gold gem\n") {
           console.log(code.substr(i, 9));
@@ -152,6 +154,8 @@ function gemsParse(code) {
         i+=9;
         break;
       case 2:
+        
+        console.log(code[i]);
         i+=4;
         if (code.substr(i, 11) != "purple gem\n") {
           console.log(code.substr(i, 11));

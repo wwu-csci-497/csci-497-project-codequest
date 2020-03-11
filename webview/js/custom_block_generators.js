@@ -180,14 +180,14 @@ Blockly.JavaScript.objects_gem_blue = function(a) {
 Blockly.JavaScript.objects_gem_gold = function(a) {
     return genDict["objects_gem_gold"];
 }
-Blockly.JavaScript.objects_gem_red = function(a) {
-    return genDict["objects_gem_red"];
+Blockly.JavaScript.objects_gem_orange = function(a) {
+    return genDict["objects_gem_orange"];
 }
 Blockly.JavaScript.objects_gem_green = function(a) {
     return genDict["objects_gem_green"];
 }
-Blockly.JavaScript.objects_gem_white = function(a) {
-    return genDict["objects_gem_white"];
+Blockly.JavaScript.objects_gem_purple = function(a) {
+    return genDict["objects_gem_purple"];
 }
 Blockly.JavaScript.objects_lever1 = function(a) {
     return genDict["objects_lever1"];
