@@ -1,4 +1,4 @@
-# CodeQuest | https://3dot.io/csci497r/
+# CodeQuest | https://codequest.3dot.io/
 
 Web app videogame to help beginners learn basic coding fundamentals.
 
